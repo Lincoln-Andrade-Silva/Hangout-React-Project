@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9qU/oglZryO52ZV98K9JcjQo555z34VxCezRzts9p84ZSesnjqcEtH7gvUBkBd1l/DDruyD+skKN7PMjMsLvIQ==",
+  "dgSpecHash": "v1+kLBVjIPhKYlVNSH/AQhiE7nKrDyfm5uJz4h+i46gFwbIu8RhEDoLHNsH+9H+Yd7W+2coolTSkmjU9hPs3Jw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj",
+  "projectFilePath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.1\\microsoft.data.sqlite.core.7.0.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
