@@ -1,0 +1,15 @@
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\bin\Debug\net7.0\Persistence.deps.json
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\bin\Debug\net7.0\Persistence.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\bin\Debug\net7.0\Persistence.pdb
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\bin\Debug\net7.0\Domain.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\bin\Debug\net7.0\Domain.pdb
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.csproj.AssemblyReference.cache
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.AssemblyInfoInputs.cache
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.AssemblyInfo.cs
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.csproj.CoreCompileInputs.cache
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.csproj.CopyComplete
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\refint\Persistence.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\Persistence.pdb
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\Persistence\obj\Debug\net7.0\ref\Persistence.dll
