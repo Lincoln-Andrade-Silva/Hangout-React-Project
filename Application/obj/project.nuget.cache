@@ -1,9 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "S2fy0iUnVQoLVB9e4F5ARtkumwHmsd08CJFoS8ocL3lAFHvPCC+ziSsvimytMMBha1ybBOoWUBizjuQFdxjDZA==",
+  "dgSpecHash": "x9rtH9TLpCoeZGiUHwcFF5kqckcO+pXjRFqVMmMby33jKZgmaornVVBNnJ0EoJ3GrA4ZLrkcseWrT3uPAwLNOw==",
   "success": true,
   "projectFilePath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\UM654HE\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.1\\microsoft.data.sqlite.core.7.0.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
