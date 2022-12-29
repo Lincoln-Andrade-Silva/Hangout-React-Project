@@ -1,3 +1,3 @@
 # Sunflower-React-Project
 
-##Web application developed in react
+Web application developed in react
