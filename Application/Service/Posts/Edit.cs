@@ -26,7 +26,11 @@ namespace Application.Service.Posts
 
             public async Task<Post> Handle(Command request, CancellationToken cancellationToken)
             {
-                var post = this.mapper.Map(request.Post, await this.context.Posts.FindAsync(request.Post.Id));
+                var post = await this.context.Posts.FindAsync(request.Post.Id);
+
+                if (post == null) return null;
+
+                this.mapper.Map(request.Post, post);
 
                 await this.context.SaveChangesAsync();
 

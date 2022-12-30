@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import service from '../api/service';
 import LoadingComponent from './LoadingComponent';
 import { v4 as uuid } from 'uuid';
+import { useStore } from '../stores/store';
 
 function App() {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -13,6 +14,7 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const { postStore } = useStore();
 
   function handleSelectPost(id: string) {
     setSelectedPost(posts.find(x => x.id === id))

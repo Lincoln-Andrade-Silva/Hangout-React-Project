@@ -6,3 +6,4 @@ Web application developed in react
 - Axios
 - Semantic-UI
 - UUID
+- MobX Lite
