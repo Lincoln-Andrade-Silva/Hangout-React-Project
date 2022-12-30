@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
-import { IPost } from "../../../models/IPost";
+import { IPost } from "../../../app/models/IPost";
 
 interface Props {
     post: IPost;
