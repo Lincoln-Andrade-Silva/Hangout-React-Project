@@ -1,8 +1,8 @@
 import axios from 'axios';
-import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
-import { Header, List } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
 import { IPost } from '../models/IPost';
+import NavBar from './NavBar';
 
 function App() {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      <Header as='h2' icon='users' content='Sunflower' />
+      <NavBar />
       
       <List>
         {posts.map(post => (
