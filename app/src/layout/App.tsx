@@ -1,14 +1,14 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import { Header, List } from 'semantic-ui-react';
-
-import './App.css';
+import { IPost } from '../models/IPost';
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
   
   useEffect(() => {
-    axios.get('http://localhost:5000/Post')
+    axios.get<IPost[]>('http://localhost:5000/Post')
       .then(response => {
         setPosts(response.data)
       })
@@ -19,7 +19,7 @@ function App() {
       <Header as='h2' icon='users' content='Sunflower' />
       
       <List>
-        {posts.map((post : any) => (
+        {posts.map(post => (
           <List.Item key={post.id}>
             {post.title}
           </List.Item>
