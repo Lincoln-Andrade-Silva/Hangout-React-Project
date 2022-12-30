@@ -5,4 +5,5 @@ export interface IPost {
     category: string;
     city: string;
     venue: string;
+    date: string;
 }
