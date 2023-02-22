@@ -32,7 +32,7 @@ namespace API.Controllers
             return await this.iMediator.Send(new Create.Command { Post = Post });
         }
 
-        [HttpPatch("{Id}")]
+        [HttpPut("{Id}")]
         public async Task<ActionResult<Post>> edit(Guid Id, Post Post)
         {
             Post.Id = Id;

@@ -1,6 +1,7 @@
+using Application.Core;
+using AutoMapper;
 using Domain;
 using MediatR;
-using AutoMapper;
 using Persistence;
 
 namespace Application.Service.Posts

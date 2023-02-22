@@ -1,16 +1,11 @@
+import { observer } from "mobx-react-lite";
 import { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
-import { IPost } from "../../../../app/models/IPost";
+import { useStore } from "../../../../app/stores/store";
 
-interface Props {
-    posts: IPost[];
-    selectPost: (id: string) => void;
-    deletePost: (id: string) => void;
-    submitting: boolean;
-}
-
-
-export default function PostList({ posts, selectPost, deletePost, submitting }: Props) {
+export default observer(function PostList() {
+    const { postStore } = useStore();
+    const { deletePost, postsByDate, loading } = postStore;
     const [target, setTarget] = useState('');
 
     function handlePostDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
@@ -21,7 +16,7 @@ export default function PostList({ posts, selectPost, deletePost, submitting }: 
     return (
         <Segment>
             <Item.Group divided>
-                {posts.map(post => (
+                {postsByDate.map(post => (
                     <Item key={post.id}>
                         <Item.Content>
                             <Item.Header as='a'>{post.title}</Item.Header>
@@ -31,8 +26,8 @@ export default function PostList({ posts, selectPost, deletePost, submitting }: 
                                 <div>{post.city}, {post.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectPost(post.id)} floated="right" content='View' color='teal' />
-                                <Button name={post.id} loading={submitting && target === post.id} onClick={(e) => handlePostDelete(e, post.id)} floated="right"
+                                <Button onClick={() => postStore.selectPost(post.id)} floated="right" content='View' color='teal' />
+                                <Button name={post.id} loading={loading && target === post.id} onClick={(e) => handlePostDelete(e, post.id)} floated="right"
                                     content='Delete' color='red' />
                                 <Label basic content={post.category} />
                             </Item.Extra>
@@ -43,4 +38,4 @@ export default function PostList({ posts, selectPost, deletePost, submitting }: 
 
         </Segment>
     )
-}
+})

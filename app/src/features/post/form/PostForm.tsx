@@ -1,16 +1,12 @@
+import { observer } from 'mobx-react-lite';
 import { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { IPost } from "../../../app/models/IPost";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-    closeForm: () => void;
-    post: IPost | undefined;
-    createOrUpdatePost: (post: IPost) => void;
-    submitting: boolean;
-}
+export default observer(function PostForm() {
 
-export default function PostForm({ closeForm, post: selectedPost, createOrUpdatePost, submitting }: Props) {
-
+    const { postStore } = useStore();
+    const { selectedPost, closeForm, createPost, editPost, loading } = postStore;
 
     const initialState = selectedPost ?? {
         id: '',
@@ -25,7 +21,7 @@ export default function PostForm({ closeForm, post: selectedPost, createOrUpdate
     const [post, setPost] = useState(initialState);
 
     function handleSubmit() {
-        createOrUpdatePost(post);
+        post.id ? editPost(post) : createPost(post);
     }
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -43,9 +39,9 @@ export default function PostForm({ closeForm, post: selectedPost, createOrUpdate
                 <Form.Input placeholder='City' name='city' value={post.city} onChange={handleOnChange} />
                 <Form.Input placeholder='Venue' name='venue' value={post.venue} onChange={handleOnChange} />
 
-                <Button loading={submitting} floated="right" type="submit" color="green" content="Save" />
-                <Button onClick={() => closeForm()} floated="right" content='Cancel' />
+                <Button loading={loading} floated="right" type="submit" color="green" content="Save" />
+                <Button onClick={closeForm} floated="right" content='Cancel' />
             </Form>
         </Segment>
     )
-}
+})

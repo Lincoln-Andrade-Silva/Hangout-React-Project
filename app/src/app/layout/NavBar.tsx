@@ -1,22 +1,21 @@
 import React from 'react';
 import { Menu, Container, Button, Dropdown, Icon } from "semantic-ui-react"
+import { useStore } from '../stores/store';
 
-interface Props {
-    openForm: () => void;
-}
+export default function NavBar() {
+    const { postStore } = useStore();
 
-export default function NavBar({openForm} : Props) {
     return (
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item header>
-                <img src='/assets/icon.png'  alt="[Logo]" style={{ marginRight: '1vw' }} />
+                    <img src='/assets/icon.png' alt="[Logo]" style={{ marginRight: '1vw' }} />
                     Sunflower
                 </Menu.Item>
                 <Menu.Item name='Activities' />
                 <Menu.Item name='Errors' />
                 <Menu.Item>
-                    <Button onClick={() => openForm()} positive content='Create Post' />
+                    <Button onClick={() => postStore.openForm()} positive content='Create Post' />
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Icon enabled="true" name='user circle' size="big" avatar="true" spaced='right' />
