@@ -8,7 +8,7 @@ export default class PostStore {
     selectedPost: IPost | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = true;
+    loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -20,12 +20,12 @@ export default class PostStore {
     }
 
     listPosts = async () => {
+        this.setLoadingInitial(true);
         try {
             const posts = await service.post.list();
             runInAction(() => {
                 posts.forEach((post: IPost) => {
-                    post.date = post.date.split('T')[0];
-                    this.posts.set(post.id, post);
+                    this.setPost(post);
                 })
             })
             this.setLoadingInitial(false);
@@ -43,7 +43,7 @@ export default class PostStore {
         try {
             await service.post.create(post);
             runInAction(() => {
-                this.posts.set(post.id, post);
+                this.setPost(post);
                 this.selectedPost = post;
                 this.setEditMode(false);
                 this.setLoading(false);
@@ -61,7 +61,7 @@ export default class PostStore {
         try {
             await service.post.edit(post);
             runInAction(() => {
-                this.posts.set(post.id, post);
+                this.setPost(post);
                 this.selectedPost = post;
                 this.setEditMode(false);
                 this.setLoading(false);
@@ -80,7 +80,6 @@ export default class PostStore {
             await service.post.delete(id);
             runInAction(() => {
                 this.posts.delete(id);
-                if (this.selectedPost?.id === id) this.cancelSelectedPost();
                 this.setLoading(false);
             })
         } catch (error) {
@@ -91,32 +90,43 @@ export default class PostStore {
         }
     }
 
-    selectPost = (id: string) => {
-        this.selectedPost = this.posts.get(id)
+    loadPost = async (id: string) => {
+        let post = this.posts.get(id);
+        if (post) {
+            this.selectedPost = post;
+            return post;
+        }
+        else {
+            this.setLoadingInitial(true);
+            try {
+                post = await service.post.details(id);
+                this.setPost(post!);
+                runInAction(() => this.selectedPost = post)
+                this.setLoadingInitial(false);
+                return post;
+            } catch (error) {
+                console.log(error);
+                runInAction(() => {
+                    this.setLoadingInitial(false);
+                })
+            }
+        }
     }
 
-    cancelSelectedPost = () => {
-        this.selectedPost = undefined;
-    }
-
-    openForm = (id?: string) => {
-        id ? this.selectPost(id) : this.cancelSelectedPost();
-        this.setEditMode(true);
-    }
-
-    closeForm = () => {
-        this.setEditMode(false);
-    }
-
-    setLoadingInitial = (state: boolean) => {
+    private setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
     }
 
-    setLoading = (state: boolean) => {
+    private setLoading = (state: boolean) => {
         this.loading = state;
     }
 
-    setEditMode = (state: boolean) => {
+    private setEditMode = (state: boolean) => {
         this.editMode = state;
+    }
+
+    private setPost = (post: IPost) => {
+        post.date = post.date.split('T')[0];
+        this.posts.set(post.id, post);
     }
 }

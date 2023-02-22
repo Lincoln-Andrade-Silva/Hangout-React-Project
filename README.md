@@ -15,3 +15,6 @@ Web application developed in react
 
 - MobX Lite
   npm i mobx mobx-react-lite
+
+- React Router DOM
+  npm i react-router-dom

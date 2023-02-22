@@ -1,21 +1,19 @@
-import React from 'react';
-import { Menu, Container, Button, Dropdown, Icon } from "semantic-ui-react"
-import { useStore } from '../stores/store';
+import { NavLink } from 'react-router-dom';
+import { Button, Container, Dropdown, Icon, Menu } from "semantic-ui-react";
 
 export default function NavBar() {
-    const { postStore } = useStore();
 
     return (
         <Menu inverted fixed='top'>
             <Container>
-                <Menu.Item header>
-                    <img src='/assets/icon.png' alt="[Logo]" style={{ marginRight: '1vw' }} />
+                <Menu.Item as={NavLink} to='/' exact header>
+                    <img src='/assets/icon.png' alt="Logo" style={{ marginRight: '1vw' }} />
                     Sunflower
                 </Menu.Item>
-                <Menu.Item name='Activities' />
+                <Menu.Item as={NavLink} to='/dashboard' name='Activities' />
                 <Menu.Item name='Errors' />
                 <Menu.Item>
-                    <Button onClick={() => postStore.openForm()} positive content='Create Post' />
+                    <Button as={NavLink} to='/form/create' positive content='Create Post' />
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Icon enabled="true" name='user circle' size="big" avatar="true" spaced='right' />

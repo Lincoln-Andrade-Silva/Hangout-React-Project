@@ -1,26 +1,22 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import PostDashboard from '../../features/post/dashboard/PostDashboard';
-import { useStore } from '../stores/store';
-import LoadingComponent from './LoadingComponent';
+import HomePage from '../../features/home/HomePage';
 import NavBar from './NavBar';
 
 function App() {
-  const { postStore } = useStore();
-
-  useEffect(() => {
-    postStore.listPosts();
-  }, [postStore])
-
-  if (postStore.loadingInitial) return <LoadingComponent content='Loading app..' />
+  const location = useLocation();
 
   return (
     <>
-      <NavBar />
-      <Container style={{ marginTop: '7em' }}>
-        <PostDashboard />
-      </Container>
+      {location.pathname === '/' ? <HomePage /> : (
+        <>
+          <NavBar />
+          <Container style={{ marginTop: '7em' }}>
+            <Outlet />
+          </Container>
+        </>
+      )}
     </>
   )
 }
