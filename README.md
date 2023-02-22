@@ -18,3 +18,7 @@ Web application developed in react
 
 - React Router DOM
   npm i react-router-dom
+
+- React Calendar
+  npm i react-calendar
+  npm i --save-dev @types/react-calendar

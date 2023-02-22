@@ -13,7 +13,7 @@ export default function NavBar() {
                 <Menu.Item as={NavLink} to='/dashboard' name='Activities' />
                 <Menu.Item name='Errors' />
                 <Menu.Item>
-                    <Button as={NavLink} to='/form/create' positive content='Create Post' />
+                    <Button as={NavLink} to='/form/create' color='teal' content='Create Post' />
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Icon enabled="true" name='user circle' size="big" avatar="true" spaced='right' />

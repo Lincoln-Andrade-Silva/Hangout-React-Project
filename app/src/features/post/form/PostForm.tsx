@@ -1,17 +1,18 @@
 import { observer } from 'mobx-react-lite';
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Form, Segment } from "semantic-ui-react";
+import { v4 as uuid } from 'uuid';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from "../../../app/stores/store";
-import { v4 as uuid } from 'uuid';
 
 export default observer(function PostForm() {
 
     const { id } = useParams();
     const navigate = useNavigate();
     const { postStore } = useStore();
-    const { createPost, editPost, loading, loadPost, loadingInitial } = postStore;
+    const [target, setTarget] = useState('');
+    const { createPost, editPost, loading, loadPost, loadingInitial, deletePost } = postStore;
     const [post, setPost] = useState({
         id: '',
         title: '',
@@ -21,6 +22,11 @@ export default observer(function PostForm() {
         city: '',
         venue: ''
     });
+
+    function handlePostDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+        setTarget(e.currentTarget.name)
+        deletePost(id);
+    }
 
     useEffect(() => {
         if (id) loadPost(id).then(post => setPost(post!));
@@ -53,6 +59,13 @@ export default observer(function PostForm() {
                 <Form.Input placeholder='Venue' name='venue' value={post.venue} onChange={handleOnChange} />
 
                 <Button loading={loading} onClick={() => handleSubmit()} floated="right" type="submit" color="green" content="Save" />
+                {id && <Button
+                    name={post.id}
+                    loading={loading && target === post.id}
+                    onClick={(e) => handlePostDelete(e, post.id)}
+                    floated="right"
+                    content='Delete' color='red'
+                />}
                 <Button as={Link} to={`/dashboard`} floated="right" content='Cancel' />
             </Form>
         </Segment>

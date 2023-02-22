@@ -19,6 +19,16 @@ export default class PostStore {
             Date.parse(x.date) - Date.parse(y.date));
     }
 
+    get groupedPosts() {
+        return Object.entries(
+            this.postsByDate.reduce((posts, post) => {
+                const date = post.date;
+                posts[date] = posts[date] ? [...posts[date], post] : [post];
+                return posts;
+            }, {} as { [key: string]: IPost[] })
+        )
+    }
+
     listPosts = async () => {
         this.setLoadingInitial(true);
         try {
