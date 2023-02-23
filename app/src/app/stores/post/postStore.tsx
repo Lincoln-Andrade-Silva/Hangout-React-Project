@@ -2,7 +2,7 @@ import { makeAutoObservable, reaction, runInAction } from "mobx";
 import { v4 as uuid } from 'uuid';
 import service from "../../api/service";
 import { IPost } from "../../models/IPost";
-import { Pagination, PagingParams } from "../../models/PaginationModels";
+import { IPagination, IPagingParams } from "../../models/IPaginationModels";
 
 export default class PostStore {
     posts = new Map<string, IPost>();
@@ -10,8 +10,8 @@ export default class PostStore {
     editMode = false;
     loading = false;
     loadingInitial = false;
-    pagination: Pagination | null = null;
-    pagingParams = new PagingParams();
+    pagination: IPagination | null = null;
+    pagingParams = new IPagingParams();
     predicate = new Map().set('all', true);
 
     constructor() {
@@ -19,14 +19,14 @@ export default class PostStore {
         reaction(
             () => this.predicate.keys(),
             () => {
-                this.pagingParams = new PagingParams();
+                this.pagingParams = new IPagingParams();
                 this.posts.clear();
                 this.listPosts();
             }
         )
     }
 
-    setPagingParams = (pagingParams: PagingParams) => {
+    setIPagingParams = (pagingParams: IPagingParams) => {
         this.pagingParams = pagingParams;
     }
 
@@ -181,7 +181,7 @@ export default class PostStore {
         }
     }
 
-    setPagination = (pagination: Pagination) => {
+    setIPagination = (pagination: IPagination) => {
         this.pagination = pagination;
     }
 

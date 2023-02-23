@@ -1,3 +1,4 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -6,12 +7,12 @@ namespace Application.Service
 {
     public class Delete
     {
-        public class Command : IRequest<Post>
+        public class Command : IRequest<Result<Unit>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, Post>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
 
@@ -20,14 +21,18 @@ namespace Application.Service
                 this.context = context;
             }
 
-            public async Task<Post> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var Post = await this.context.Posts.FindAsync(request.Id);
+                var post = await this.context.Posts.FindAsync(request.Id);
+                if (post == null) return null;
 
-                this.context.Remove(Post);
-                await this.context.SaveChangesAsync();
+                this.context.Remove(post);
 
-                return Post;
+                var result = await this.context.SaveChangesAsync() > 0;
+
+                if (!result) return Result<Unit>.Failure("Failed to delete the Post");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
 

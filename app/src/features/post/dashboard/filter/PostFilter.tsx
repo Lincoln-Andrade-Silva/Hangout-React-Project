@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Button, Dropdown, Input } from "semantic-ui-react";
+import { Button, Dropdown } from "semantic-ui-react";
 import { useStore } from "../../../../app/stores/store";
 
 export default observer(function PostFilter() {

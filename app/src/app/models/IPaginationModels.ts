@@ -1,21 +1,21 @@
-export interface Pagination {
+export interface IPagination {
     currentPage: number;
     itemsPerPage: number;
     totalItems: number;
     totalPages: number;
 }
 
-export class PaginatedResult<T> {
+export class IPaginatedResult<T> {
     data: T;
-    pagination: Pagination;
+    pagination: IPagination;
 
-    constructor(data: T, pagination: Pagination) {
+    constructor(data: T, pagination: IPagination) {
         this.data = data;
         this.pagination = pagination;
     }
 }
 
-export class PagingParams{
+export class IPagingParams{
     pageNumber;
     pageSize;
 

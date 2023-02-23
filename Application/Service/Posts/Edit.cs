@@ -1,5 +1,8 @@
+using Application.Core;
+using Application.Core.Posts;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -7,13 +10,20 @@ namespace Application.Service.Posts
 {
     public class Edit
     {
-        public class Command : IRequest<Post>
+        public class Command : IRequest<Result<Unit>>
         {
             public Post Post { get; set; }
         }
 
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Post).SetValidator(new PostValidator());
+            }
+        }
 
-        public class Handler : IRequestHandler<Command, Post>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
             private readonly IMapper mapper;
@@ -24,7 +34,7 @@ namespace Application.Service.Posts
                 this.mapper = mapper;
             }
 
-            public async Task<Post> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var post = await this.context.Posts.FindAsync(request.Post.Id);
 
@@ -32,9 +42,11 @@ namespace Application.Service.Posts
 
                 this.mapper.Map(request.Post, post);
 
-                await this.context.SaveChangesAsync();
+                var result = await this.context.SaveChangesAsync() > 0;
 
-                return post;
+                if (!result) return Result<Unit>.Failure("Failed to edit the Post");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

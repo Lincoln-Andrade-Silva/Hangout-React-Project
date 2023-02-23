@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Outlet, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Container } from 'semantic-ui-react';
 import HomePage from '../../features/home/HomePage';
 import NavBar from './NavBar';
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
       {location.pathname === '/' ? <HomePage /> : (
         <>
           <NavBar />

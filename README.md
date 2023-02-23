@@ -1,8 +1,9 @@
 # Sunflower-React-Project
 
-Web application developed in react
+Web application developed in react using .Net 7.0, React 18 (with Typescript) and Mobx.
 
-# NPM Dependences 
+# Npm Dependences
+
 - Axios
   npm i axios
 
@@ -17,11 +18,16 @@ Web application developed in react
   npm i mobx mobx-react-lite
 
 - React Router DOM
-  npm i react-router-dom
+  npm install react@latest react-dom@latest
+  npm install --save-dev @types/react@latest @types/react-dom@latest
 
 - React Calendar
   npm i react-calendar
   npm i --save-dev @types/react-calendar
 
 - Lodash
+  npm i lodash
   npm i --save-dev @types/lodash
+
+- React Toastify
+  npm i react-toastify

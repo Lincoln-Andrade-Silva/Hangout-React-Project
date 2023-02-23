@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "AjC8dNqqDoguADQreWq++IeFomeRICz3J7fuQkE+D6P9p24u8yllvExGJGvykpqOLHtxl6zxbc6wR3jpajKU9A==",
+  "dgSpecHash": "f3TjUPmYlFRFUfbPI/3X0oMSXvRa7UB6cexDWmcghdkkYwpHCJD5f9LIprzt4o8AjWmfDNXHN3Qbj5zq5naN0g==",
   "success": true,
   "projectFilePath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

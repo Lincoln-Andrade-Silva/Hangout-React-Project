@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import Calendar from "react-calendar";
-import { Grid, GridColumn, GridRow } from "semantic-ui-react";
+import { Grid, GridRow } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
 import PostFilter from "./filter/PostFilter";

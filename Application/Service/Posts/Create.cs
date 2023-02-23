@@ -1,18 +1,28 @@
 using Domain;
 using MediatR;
 using Persistence;
+using FluentValidation;
+using Application.Core.Posts;
+using Application.Core;
 
 namespace Application.Service.Posts
 {
     public class Create
     {
-        public class Command : IRequest<Post>
+        public class Command : IRequest<Result<Unit>>
         {
             public Post Post { get; set; }
         }
 
 
-        public class Handler : IRequestHandler<Command, Post>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Post).SetValidator(new PostValidator());
+            }
+        }
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
 
@@ -21,13 +31,14 @@ namespace Application.Service.Posts
                 this.context = context;
             }
 
-            public async Task<Post> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 this.context.Posts.Add(request.Post);
 
-                await this.context.SaveChangesAsync();
+                var result = await this.context.SaveChangesAsync() > 0;
+                if (!result) return Result<Unit>.Failure("Failed to create Post");
 
-                return await this.context.Posts.FindAsync(request.Post.Id);
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

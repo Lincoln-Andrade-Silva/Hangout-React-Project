@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aLb+YyGR6vrASHk7f/MqsbRaxHnAYhJbJVn46Wz/QS885nPYYX0Sq/jko0lGb/zxAIzx7N2qqm/5rX8Ep6yz2A==",
+  "dgSpecHash": "Fk3hYQV5BZaQmgdHEC1Z1KttpAiJyzCXoTXof3dSzEgrUvjj+hI98LKwt4Xr38fjeNXMT5cQFNFLiDuChwG8BQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

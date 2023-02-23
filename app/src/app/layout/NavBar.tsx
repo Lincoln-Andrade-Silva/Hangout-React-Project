@@ -1,17 +1,17 @@
 import { NavLink } from 'react-router-dom';
-import { Button, Container, Dropdown, Icon, Menu } from "semantic-ui-react";
+import { Button, Container, Dropdown, Icon, Image, Menu } from "semantic-ui-react";
 
 export default function NavBar() {
 
     return (
-        <Menu inverted fixed='top'>
+        <Menu inverted fixed='top' style={{fontSize: 15}}>
             <Container>
                 <Menu.Item as={NavLink} to='/' exact header>
-                    <img src='/assets/icon.png' alt="Logo" style={{ marginRight: '1vw' }} />
-                    Sunflower
+                    <Image src='/assets/icon.png' alt="Logo" style={{ marginRight: '1vw', width: 40 }} />
+                    <span>Sunflower</span>
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/dashboard' name='Activities' />
-                <Menu.Item name='Errors' />
+                <Menu.Item as={NavLink} to='/dashboard' name='Posts' />
+                <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
                     <Button as={NavLink} to='/form/create' color='teal' content='Create Post' />
                 </Menu.Item>

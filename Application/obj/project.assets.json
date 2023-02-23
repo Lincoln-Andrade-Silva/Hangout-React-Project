@@ -1506,11 +1506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\UM654HE\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\obj\\",
+      "outputPath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1524,17 +1524,18 @@
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Domain\\Domain.csproj"
+            "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Domain\\Domain.csproj"
             },
-            "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj": {
-              "projectPath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj"
+            "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Persistence\\Persistence.csproj"
             }
           }
         }

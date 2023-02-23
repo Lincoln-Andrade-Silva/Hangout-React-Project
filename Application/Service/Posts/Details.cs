@@ -1,18 +1,18 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Service.Posts
 {
     public class Details
     {
-        public class Query : IRequest<Post>
+        public class Query : IRequest<Result<Post>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Post>
+        public class Handler : IRequestHandler<Query, Result<Post>>
         {
             private readonly DataContext context;
 
@@ -21,9 +21,9 @@ namespace Application.Service.Posts
                 this.context = context;
             }
 
-            public async Task<Post> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Post>> Handle(Query request, CancellationToken cancellationToken)
             {
-               return await this.context.Posts.FindAsync(request.Id);
+                return Result<Post>.Success(await this.context.Posts.FindAsync(request.Id));
             }
         }
     }

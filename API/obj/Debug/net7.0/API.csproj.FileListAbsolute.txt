@@ -77,3 +77,6 @@ C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\M
 C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\UM654HE\workspace-vscode\Sunflower-React-Project\API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
