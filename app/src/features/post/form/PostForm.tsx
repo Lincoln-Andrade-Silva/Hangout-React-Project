@@ -15,7 +15,7 @@ import { IPost, PostFormValues } from '../../../app/models/IPost';
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function PostForm() {
-    
+
     const navigate = useNavigate();
     const { postStore } = useStore();
     const { id } = useParams<{ id: string }>();

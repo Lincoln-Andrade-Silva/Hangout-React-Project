@@ -67,8 +67,8 @@ const post = {
     list: () => requests.get(postModule),
     listWithFilter: (params: URLSearchParams) => axios.get<IPaginatedResult<IPost[]>>(postModule, { params }).then(response),
     details: (id: string) => requests.get<IPost>(`${postModule}/${id}`),
-    create: (post: IPost) => axios.post<IPost>(postModule, post),
-    edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post),
+    create: (post: IPost) => axios.post<IPost>(postModule, post).then(() => {toast.success('Sucess')}),
+    edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post).then(() => {toast.success('Sucess')}),
     delete: (id: string) => requests.delete<void>(`${postModule}/${id}`)
 }
 
