@@ -4,7 +4,7 @@ import { Button, Container, Dropdown, Icon, Image, Menu } from "semantic-ui-reac
 export default function NavBar() {
 
     return (
-        <Menu inverted fixed='top' style={{fontSize: 15}}>
+        <Menu inverted fixed='top' style={{ fontSize: 15 }}>
             <Container>
                 <Menu.Item as={NavLink} to='/' exact header>
                     <Image src='/assets/icon.png' alt="Logo" style={{ marginRight: '1vw', width: 40 }} />
@@ -16,11 +16,18 @@ export default function NavBar() {
                     <Button as={NavLink} to='/form/create' color='teal' content='Create Post' />
                 </Menu.Item>
                 <Menu.Item position='right'>
-                    <Icon enabled="true" name='user circle' size="big" avatar="true" spaced='right' />
-                    <Dropdown pointing='top left' text='User' style={{ fontWeight: '900' }}>
-                        <Dropdown.Menu>
-                            <Dropdown.Item text='My Profile' icon='child' />
-                            <Dropdown.Item text='Logout' icon='power off' />
+                    <Dropdown
+                        as={Button}
+                        color='teal'
+                        text='User'
+                        icon='id badge'
+                        floating
+                        labeled
+                        className='button icon'
+                    >
+                        <Dropdown.Menu style={{ fontSize: 13 }}>
+                            <Dropdown.Item><Icon name='user' />Profile</Dropdown.Item>
+                            <Dropdown.Item><Icon name='power off' />Logout</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>

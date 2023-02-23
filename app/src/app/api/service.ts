@@ -2,10 +2,9 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import 'dotenv';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { IPost } from '../models/IPost';
 import { IPaginatedResult } from '../models/IPaginationModels';
+import { IPost } from '../models/IPost';
 import { router } from '../router/Route';
-import { useStore } from '../stores/store';
 import { store } from '../stores/store';
 
 const sleep = (delay: number) => {
@@ -33,7 +32,7 @@ axios.interceptors.response.use(async response => {
                 }
                 throw modalStateErrors.flat();
             } else {
-                if (config.method === 'get' && data == "Invalid Guid") {
+                if (config.method === 'get' && data === "Invalid Guid") {
                     router.navigate('/not-found')
                 }
                 toast.error(data)

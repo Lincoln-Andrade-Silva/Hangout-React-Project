@@ -14,7 +14,7 @@ export default observer(function PostDashboard() {
 
     useEffect(() => {
         if (posts.size <= 0) listPosts();
-    }, [listPosts])
+    }, [listPosts, posts.size])
 
     if (postStore.loadingInitial) return <LoadingComponent content='Loading app..' />
 

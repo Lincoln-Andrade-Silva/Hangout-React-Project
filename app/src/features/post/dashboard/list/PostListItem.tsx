@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import { IPost } from "../../../../app/models/IPost";
@@ -25,10 +26,8 @@ export default function PostListItem({ post }: Props) {
             </Segment>
             <Segment>
                 <span>
-                    {/* <Icon name='calendar outline' /> {format(activity.date!, 'dd / MMMM / yyyy ')}
-                    <Icon name='clock outline' style={{ marginLeft: '1vw' }} /> {format(activity.date!, 'h:mm aa')} */}
-                    
-                    <Icon name='calendar outline' /> {post.date}
+                    <Icon name='calendar outline' /> {format(post.date, 'dd/mm/yyyy ')}
+                    <Icon name='clock outline' style={{ marginLeft: '1vw' }} /> {format(post.date, 'h:mm aa')}
                     <Icon name="map marker alternate" style={{ marginLeft: '1vw' }} /> {post.venue}
                 </span>
             </Segment>

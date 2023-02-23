@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import service from "../../api/service";
 import { IPost } from "../../models/IPost";
 import { IPagination, IPagingParams } from "../../models/IPaginationModels";
+import { format } from "date-fns";
 
 export default class PostStore {
     posts = new Map<string, IPost>();
@@ -76,13 +77,13 @@ export default class PostStore {
 
     get postsByDate() {
         return Array.from(this.posts.values()).sort((x, y) =>
-            Date.parse(x.date) - Date.parse(y.date));
+            x.date.getTime() - y.date.getTime());
     }
 
     get groupedPosts() {
         return Object.entries(
             this.postsByDate.reduce((posts, post) => {
-                const date = post.date;
+                const date = format(post.date, ' dd MMM, yyyy');
                 posts[date] = posts[date] ? [...posts[date], post] : [post];
                 return posts;
             }, {} as { [key: string]: IPost[] })
@@ -101,7 +102,7 @@ export default class PostStore {
             this.setLoadingInitial(false);
         } catch (error) {
             console.log(error);
-                this.setLoadingInitial(false);
+            this.setLoadingInitial(false);
         }
     }
 
@@ -198,7 +199,7 @@ export default class PostStore {
     }
 
     private setPost = (post: IPost) => {
-        post.date = post.date.split('T')[0];
+        post.date = new Date(post.date);
         this.posts.set(post.id, post);
     }
 }

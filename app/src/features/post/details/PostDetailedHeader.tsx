@@ -1,6 +1,7 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
-import { Button, Header, Image, Item, Segment } from "semantic-ui-react";
+import { Button, Dropdown, Header, Icon, Image, Item, Segment } from "semantic-ui-react";
 import { IPost } from '../../../app/models/IPost';
 
 const postImageStyle = {
@@ -35,12 +36,9 @@ export default observer(function postDetailedHeader({ post }: Props) {
                                     content={post.title}
                                     style={{ color: 'white' }}
                                 />
-                                <p>{post.date}</p>
+                                <p>{format(post.date, 'MM/dd/yyyy')}</p>
                                 <p>
-                                    Hosted by
-                                    <strong>
-                                        User
-                                    </strong>
+                                    Hosted by <strong> User </strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -51,12 +49,25 @@ export default observer(function postDetailedHeader({ post }: Props) {
                 <>
                     <Button color='teal'>Join Activity</Button>
                     <Button>Cancel attendance</Button>
-                    <Button as={Link}
-                        to={`/form/manage/${post.id}`}
-                        color='yellow'
+
+                    <Dropdown
+                        as={Button}
                         floated='right'
-                        content='Manage Event'
-                    />
+                        color='yellow'
+                        text='Manage Post'
+                        floating
+                        labeled
+                        className='button icon'
+                    >
+                        <Dropdown.Menu style={{ fontSize: 13 }}>
+                            <Dropdown.Item as={Link} to={`/form/manage/${post.id}`}>
+                                <Icon name='pencil' /> Edit
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <Icon name='trash' /> Delete
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </>
             </Segment>
         </Segment.Group >

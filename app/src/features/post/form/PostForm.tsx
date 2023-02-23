@@ -1,73 +1,104 @@
+import { Formik } from 'formik';
 import { observer } from 'mobx-react-lite';
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Form, Header, Icon, Segment } from "semantic-ui-react";
 import { v4 as uuid } from 'uuid';
+import * as Yup from 'yup';
+import MyDateInput from '../../../app/common/form/MyDateInput';
+import MySelectInput from '../../../app/common/form/MySelectInput';
+import MyTextAreaInput from '../../../app/common/form/MyTextAreaInput';
+import MyTextInput from '../../../app/common/form/MyTextInput';
+import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { IPost, PostFormValues } from '../../../app/models/IPost';
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function PostForm() {
-
-    const { id } = useParams();
+    
     const navigate = useNavigate();
     const { postStore } = useStore();
-    const [target, setTarget] = useState('');
-    const { createPost, editPost, loading, loadPost, loadingInitial, deletePost } = postStore;
-    const [post, setPost] = useState({
-        id: '',
-        title: '',
-        category: '',
-        description: '',
-        date: '',
-        city: '',
-        venue: ''
-    });
+    const { id } = useParams<{ id: string }>();
+    const { createPost, editPost, loadPost, loadingInitial } = postStore;
+    const [post, setPost] = useState<PostFormValues>(new PostFormValues());
 
-    function handlePostDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
-        setTarget(e.currentTarget.name)
-        deletePost(id);
-    }
+    const validationSchema = Yup.object({
+        title: Yup.string().required(),
+        description: Yup.string().required(),
+        category: Yup.string().required(),
+        date: Yup.string().required(),
+        city: Yup.string().required(),
+        venue: Yup.string().required()
+    })
 
-    useEffect(() => {
-        if (id) loadPost(id).then(post => setPost(post!));
-    }, [id, loadPost])
-
-    function handleSubmit() {
+    function handleFormSubmit(post: PostFormValues) {
         if (!post.id) {
-            post.id = uuid();
-            createPost(post).then(() => navigate(`/post/${post.id}`))
+            let newPost = {
+                ...post,
+                id: uuid()
+            };
+            createPost(newPost as IPost).then(() => navigate(`/post/${newPost.id}`))
         } else {
-            editPost(post).then(() => navigate(`/post/${post.id}`))
+            editPost(post as IPost).then(() => navigate(`/post/${post.id}`))
         }
     }
 
-    function handleOnChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        const { name, value } = event.target;
-        setPost({ ...post, [name]: value });
-    }
+    useEffect(() => {
+        if (id) loadPost(id).then(post => setPost(new PostFormValues(post)))
+    }, [id, loadPost]);
 
     if (loadingInitial) return <LoadingComponent content='Loading form..' />
 
     return (
-        <Segment clearing>
-            <Form onSubmit={handleSubmit} autoComplete='off'>
-                <Form.Input placeholder='Title' name='title' value={post.title} onChange={handleOnChange} />
-                <Form.TextArea placeholder='Description' name='description' value={post.description} onChange={handleOnChange} />
-                <Form.Input placeholder='Category' name='category' value={post.category} onChange={handleOnChange} />
-                <Form.Input type="date" placeholder='Date' name='date' value={post.date} onChange={handleOnChange} />
-                <Form.Input placeholder='City' name='city' value={post.city} onChange={handleOnChange} />
-                <Form.Input placeholder='Venue' name='venue' value={post.venue} onChange={handleOnChange} />
+        <Segment clearing style={{ marginTop: 100, marginLeft: 350, marginRight: 350 }}>
+            <Header style={{ marginBottom: 15, paddingLeft: 45, paddingTop: 20, fontSize: 18, display: 'flex' }}>
+                {id ?
+                    <Icon name='edit outline' style={{ fontSize: 22, marginLeft: 5 }} /> :
+                    <Icon name='plus square outline' style={{ fontSize: 25 }} />}
 
-                <Button loading={loading} onClick={() => handleSubmit()} floated="right" type="submit" color="green" content="Save" />
-                {id && <Button
-                    name={post.id}
-                    loading={loading && target === post.id}
-                    onClick={(e) => handlePostDelete(e, post.id)}
-                    floated="right"
-                    content='Delete' color='red'
-                />}
-                <Button as={Link} to={`/dashboard`} floated="right" content='Cancel' />
-            </Form>
+                {id ? <span>Edit Post</span> : <span>Create Post</span>}
+            </Header>
+            <Formik
+                validationSchema={validationSchema}
+                enableReinitialize
+                initialValues={post}
+                onSubmit={values => handleFormSubmit(values)}>
+                {({ handleSubmit, isValid, isSubmitting, dirty }) => (
+                    <Form onSubmit={handleSubmit} autoComplete='off'>
+
+                        <MyTextInput placeholder='Title' name='title' />
+                        <MyTextAreaInput rows={1} placeholder='Description' name='description' />
+                        <MySelectInput options={categoryOptions} placeholder='Category' name='category' />
+                        <MyDateInput
+                            placeholderText='Date'
+                            name='date'
+                            showTimeSelect
+                            timeCaption="time"
+                            dateFormat={'MMMM, d ,yyyy  h: mm aa'}
+                        />
+
+                        <Header style={{ marginBottom: 15, paddingLeft: 50, fontSize: 18 }} content="Location Details" />
+                        <MyTextInput placeholder='City' name='city' />
+                        <MyTextInput placeholder='Venue' name='venue' />
+
+                        <Button
+                            disabled={isSubmitting || !dirty || !isValid}
+                            loading={isSubmitting}
+                            floated='right'
+                            positive type='submit'
+                            content='Submit'
+                            size='tiny'
+                            style={{ marginTop: 20, marginLeft: 10, marginRight: 10, width: 110 }} />
+                        <Button
+                            as={Link} to='/dashboard'
+                            floated='right'
+                            type='button'
+                            content='Cancel'
+                            size='tiny'
+                            style={{ marginTop: 20, marginLeft: 10, marginRight: 10, width: 90 }} />
+                    </Form>
+                )}
+            </Formik>
         </Segment>
     )
 })

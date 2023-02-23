@@ -31,3 +31,17 @@ Web application developed in react using .Net 7.0, React 18 (with Typescript) an
 
 - React Toastify
   npm i react-toastify
+
+- Formik
+  npm i formik
+
+- Yup
+  npm i yup
+  npm install @types/yup --save-dev
+
+- React Datepicker
+  npm i react-datepicker
+  npm i @types/react-datepicker --sav-dev
+
+- Date FNS
+  npm i date-fns

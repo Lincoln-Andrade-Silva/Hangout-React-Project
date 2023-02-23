@@ -43,7 +43,7 @@ export default observer(function SearchBar() {
             type: 'FINISH_SEARCH',
             results: postsByDate.filter(obj => obj.title.includes(data.value))
         })
-    }, []);
+    }, [postsByDate]);
 
     return (
         <Grid>

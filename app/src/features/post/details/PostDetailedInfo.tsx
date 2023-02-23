@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { observer } from "mobx-react-lite";
 import { Grid, Icon, Segment } from "semantic-ui-react";
 import { IPost } from "../../../app/models/IPost";
@@ -27,7 +28,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
-                            {post.date}
+                            {format(post.date, 'MMMM dd, yyyy')}
                         </span>
                     </Grid.Column>
                 </Grid>
@@ -39,7 +40,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
-                            {post.date}
+                            {format(post.date, 'h:mm aa')}
                         </span>
                     </Grid.Column>
                 </Grid>
