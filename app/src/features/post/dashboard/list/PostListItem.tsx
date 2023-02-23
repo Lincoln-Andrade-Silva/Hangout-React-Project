@@ -1,8 +1,6 @@
-import { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import { IPost } from "../../../../app/models/IPost";
-import { useStore } from "../../../../app/stores/store";
 
 interface Props {
     post: IPost
@@ -17,7 +15,7 @@ export default function PostListItem({ post }: Props) {
                     <Item>
                         <Item.Image size="tiny" circular src='/assets/user.png' />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/activities/${post.id}`} style={{ marginTop: '2.5vh' }}>
+                            <Item.Header as={Link} to={`/post/${post.id}`} style={{ marginTop: '2.5vh' }}>
                                 {post.title}
                             </Item.Header>
                             <Item.Description>Hosted by username</Item.Description>

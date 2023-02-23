@@ -22,3 +22,6 @@ Web application developed in react
 - React Calendar
   npm i react-calendar
   npm i --save-dev @types/react-calendar
+
+- Lodash
+  npm i --save-dev @types/lodash

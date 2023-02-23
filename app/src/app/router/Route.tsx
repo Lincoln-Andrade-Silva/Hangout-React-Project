@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import HomePage from "../../features/home/HomePage";
 import PostDashboard from "../../features/post/dashboard/PostDashboard";
 import PostDetails from "../../features/post/details/PostDetails";
 import PostForm from "../../features/post/form/PostForm";

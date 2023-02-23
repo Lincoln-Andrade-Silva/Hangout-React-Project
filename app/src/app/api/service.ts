@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { IPost } from '../models/IPost';
+import { PaginatedResult } from '../models/PaginationModels';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -29,6 +30,7 @@ const requests = {
 
 const post = {
     list: () => requests.get(postModule),
+    listWithFilter: (params: URLSearchParams) => axios.get<PaginatedResult<IPost[]>>(postModule, { params }).then(response),
     details: (id: string) => requests.get<IPost>(`${postModule}/${id}`),
     create: (post: IPost) => axios.post<IPost>(postModule, post),
     edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post),

@@ -1,5 +1,5 @@
-using Application.Core.Mapper.Posts;
 using Application.Service.Posts;
+using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;

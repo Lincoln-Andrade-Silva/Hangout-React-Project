@@ -1,4 +1,3 @@
-using Application.Core;
 using AutoMapper;
 using Domain;
 using MediatR;

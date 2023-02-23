@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "g8j3Nrcth3FfwlDVUUBH1m7Oi+qRYaxguLe7AhDZbbd7SONO95KrB+mwSY6ChL1/JegLOpnre1ndWlIpSK4EnA==",
+  "dgSpecHash": "aLb+YyGR6vrASHk7f/MqsbRaxHnAYhJbJVn46Wz/QS885nPYYX0Sq/jko0lGb/zxAIzx7N2qqm/5rX8Ep6yz2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
+  "projectFilePath": "c:\\Users\\UM654HE\\workspace-vscode\\Sunflower-React-Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\UM654HE\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\UM654HE\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
