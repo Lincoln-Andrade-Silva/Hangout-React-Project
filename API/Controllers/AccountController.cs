@@ -70,11 +70,13 @@ namespace API.Controllers
             return BadRequest(result.Errors);
         }
 
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         public async Task<ActionResult<UserDTO>> GetCurrentUser()
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
+
+            if (user == null) return Unauthorized();
 
             return CreateUserDTO(user);
         }

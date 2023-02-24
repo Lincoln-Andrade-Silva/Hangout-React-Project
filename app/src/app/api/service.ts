@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IPaginatedResult } from '../models/IPaginationModels';
 import { IPost } from '../models/IPost';
+import { User, UserFormValues } from '../models/User';
 import { router } from '../router/Route';
 import { store } from '../stores/store';
 
@@ -13,10 +14,18 @@ const sleep = (delay: number) => {
     })
 }
 
-const postModule = '/Post';
+const postModule = '/post';
+const accountModule = '/api/account';
 const response = <T>(response: AxiosResponse<T>) => response.data;
 
 axios.defaults.baseURL = 'http://localhost:5000';
+
+axios.interceptors.request.use(config => {
+    const token = store.commonStore.token;
+    if (token && config.headers) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
+
 axios.interceptors.response.use(async response => {
     await sleep(1000);
     return response;
@@ -67,13 +76,20 @@ const post = {
     list: () => requests.get(postModule),
     listWithFilter: (params: URLSearchParams) => axios.get<IPaginatedResult<IPost[]>>(postModule, { params }).then(response),
     details: (id: string) => requests.get<IPost>(`${postModule}/${id}`),
-    create: (post: IPost) => axios.post<IPost>(postModule, post).then(() => {toast.success('Sucess')}),
-    edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post).then(() => {toast.success('Sucess')}),
+    create: (post: IPost) => axios.post<IPost>(postModule, post).then(() => { toast.success('Sucess') }),
+    edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post).then(() => { toast.success('Sucess') }),
     delete: (id: string) => requests.delete<void>(`${postModule}/${id}`)
 }
 
+const account = {
+    current: () => requests.get<User>(accountModule),
+    login: (user: UserFormValues) => requests.post<User>(accountModule + '/login', user),
+    register: (user: UserFormValues) => requests.post<User>(accountModule + '/register', user),
+}
+
 const service = {
-    post
+    post,
+    account
 }
 
 export default service;

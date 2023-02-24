@@ -5,6 +5,8 @@ import TestErrors from "../../features/errors/TestError";
 import PostDashboard from "../../features/post/dashboard/PostDashboard";
 import PostDetails from "../../features/post/details/PostDetails";
 import PostForm from "../../features/post/form/PostForm";
+import LoginForm from "../../features/user/LoginForm";
+import RegisterForm from "../../features/user/RegisterForm";
 import App from "../layout/App";
 
 export const routes: RouteObject[] = [
@@ -13,11 +15,11 @@ export const routes: RouteObject[] = [
         element: <App />,
         children: [
             { path: 'dashboard', element: <PostDashboard /> },
-            { path: 'post/:id', element: <PostDetails /> },
-            { path: 'form/create', element: <PostForm /> },
-            { path: 'form/manage/:id', element: <PostForm /> },
-            { path: 'errors', element: <TestErrors /> },
             { path: 'server-error', element: <ServerError /> },
+            { path: 'post/:id', element: <PostDetails /> },
+            { path: 'errors', element: <TestErrors /> },
+            { path: 'form/create', element: <PostForm key='create' /> },
+            { path: 'form/manage/:id', element: <PostForm key='manage' /> },
             { path: 'not-found', element: <NotFound /> },
             { path: '*', element: <Navigate replace to='/not-found' /> }
         ]
