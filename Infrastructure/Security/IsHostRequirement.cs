@@ -26,14 +26,17 @@ namespace Infrastructure.Security
 
             if (userId == null) return Task.CompletedTask;
 
-            var activityId = Guid.Parse(_httpContextAccessor.HttpContext?.Request.RouteValues
+            var postId = Guid.Parse(_httpContextAccessor.HttpContext?.Request.RouteValues
                 .SingleOrDefault(x => x.Key == "id").Value?.ToString());
+
+            Console.WriteLine(postId);
 
             var attendee = _dbContext.PostAttendees
                 .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.AppUserId == userId && x.PostId == activityId)
+                .SingleOrDefaultAsync(x => x.AppUserId == userId && x.PostId == postId)
                 .Result;
 
+            Console.WriteLine(attendee);
             if (attendee == null) return Task.CompletedTask;
 
             if (attendee.IsHost) context.Succeed(requirement);

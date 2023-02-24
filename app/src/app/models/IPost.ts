@@ -1,3 +1,5 @@
+import { IProfile } from "./IProfile";
+
 export interface IPost {
     id: string;
     title: string;
@@ -6,9 +8,15 @@ export interface IPost {
     city: string;
     venue: string;
     date: Date;
+    hostUsername: string;
+    isCancelled: boolean;
+    isGoing: boolean;
+    isHost: boolean;
+    host?: IProfile;
+    attendees: IProfile[];
 }
 
-export class Post implements Post {
+export class IPost implements IPost {
     constructor(init?: PostFormValues) {
         Object.assign(this, init)
     }

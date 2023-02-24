@@ -17,7 +17,7 @@ export default function HomePage() {
                 {userStore.IsLoggedIn ? (
                     <>
                         <Header inverted as='h2' content='Welcome to Sunflower' />
-                        <Button as={Link} to='/activities' size='huge' style={{ marginTop: "3vh" }} inverted>
+                        <Button as={Link} to='/dashboard' size='huge' style={{ marginTop: "3vh" }} inverted>
                             Go to Dashboard
                         </Button>
                     </>

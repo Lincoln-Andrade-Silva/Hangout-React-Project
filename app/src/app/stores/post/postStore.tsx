@@ -1,9 +1,11 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import { v4 as uuid } from 'uuid';
 import service from "../../api/service";
-import { IPost } from "../../models/IPost";
+import { IPost, PostFormValues } from "../../models/IPost";
 import { IPagination, IPagingParams } from "../../models/IPaginationModels";
 import { format } from "date-fns";
+import { store } from "../store";
+import { IProfile } from "../../models/IProfile";
 
 export default class PostStore {
     posts = new Map<string, IPost>();
@@ -106,42 +108,38 @@ export default class PostStore {
         }
     }
 
-    createPost = async (post: IPost) => {
-        this.setLoading(true);
-        post.id = uuid();
+    createPost = async (post: PostFormValues) => {
+        const user = store.userStore.user;
+        const attendee = new IProfile(user!);
         try {
             await service.post.create(post);
+            const newPost = new IPost(post);
+            newPost.hostUsername = user!.username;
+            newPost.attendees = [attendee];
+            this.setPost(newPost);
             runInAction(() => {
-                this.setPost(post);
-                this.selectedPost = post;
-                this.setEditMode(false);
-                this.setLoading(false);
+                this.selectedPost = new IPost;
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.setLoading(false);
-            })
         }
     }
 
-    editPost = async (post: IPost) => {
-        this.setLoading(true);
+    editPost = async (post: PostFormValues) => {
         try {
             await service.post.edit(post);
             runInAction(() => {
-                this.setPost(post);
-                this.selectedPost = post;
-                this.setEditMode(false);
-                this.setLoading(false);
+                if (post.id) {
+                    let updatedPost = { ...this.posts.get(post.id), ...post }
+                    this.posts.set(post.id, updatedPost as IPost);
+                    this.setPost(updatedPost as IPost)
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.setLoading(false);
-            })
         }
     }
+
 
     deletePost = async (id: string) => {
         this.setLoading(true);
@@ -182,6 +180,47 @@ export default class PostStore {
         }
     }
 
+    updateAttendence = async () => {
+        const user = store.userStore.user;
+        this.loading = true;
+        try {
+            await service.post.attend(this.selectedPost!.id);
+            runInAction(() => {
+                if (this.selectedPost?.isGoing) {
+                    this.selectedPost.attendees =
+                        this.selectedPost.attendees?.filter(a => a.username !== user?.username);
+                    this.selectedPost.isGoing = false;
+                } else {
+                    const attendee = new IProfile(user!);
+                    this.selectedPost?.attendees?.push(attendee);
+                    this.selectedPost!.isGoing = true;
+                }
+                this.posts.set(this.selectedPost!.id, this.selectedPost!)
+            })
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            runInAction(() => this.loading = false);
+        }
+    }
+
+    cancelPostToggle = async () => {
+        this.loading = true
+        try {
+            await service.post.attend(this.selectedPost!.id);
+            runInAction(() => {
+                this.selectedPost!.isCancelled = !this.selectedPost?.isCancelled;
+                this.posts.set(this.selectedPost!.id, this.selectedPost!);
+            })
+        } catch (error) {
+            console.log(error);
+        } finally {
+            runInAction(() => this.loading = false);
+        }
+
+    }
+
     setIPagination = (pagination: IPagination) => {
         this.pagination = pagination;
     }
@@ -199,6 +238,16 @@ export default class PostStore {
     }
 
     private setPost = (post: IPost) => {
+        const user = store.userStore.user;
+
+        if (user) {
+            post.isGoing = post.attendees.some(
+                a => a.username === user.username
+            )
+            post.isHost = post.hostUsername === user.username;
+            post.host = post.attendees.find(x => x.username === post.hostUsername)
+        }
+
         post.date = new Date(post.date);
         this.posts.set(post.id, post);
     }

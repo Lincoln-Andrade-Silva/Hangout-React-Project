@@ -23,6 +23,12 @@ namespace Persistence.DataInit
                         UserName = "gunther",
                         Email = "gui@test.com"
                     },
+                    new AppUser
+                    {
+                        DisplayName = "Leo",
+                        UserName = "leo",
+                        Email = "leotest.com"
+                    },
                 };
 
                 foreach (var user in users)

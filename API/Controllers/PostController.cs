@@ -36,7 +36,6 @@ namespace API.Controllers
             return HandleResult(await this.Mediator.Send(new Create.Command { Post = Post }));
         }
 
-        [Authorize(Policy = "IsPostHost")]
         [HttpPut("{Id}")]
         public async Task<ActionResult<Post>> edit(Guid Id, Post Post)
         {

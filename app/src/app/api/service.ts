@@ -3,7 +3,7 @@ import 'dotenv';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IPaginatedResult } from '../models/IPaginationModels';
-import { IPost } from '../models/IPost';
+import { IPost, PostFormValues } from '../models/IPost';
 import { User, UserFormValues } from '../models/User';
 import { router } from '../router/Route';
 import { store } from '../stores/store';
@@ -48,7 +48,7 @@ axios.interceptors.response.use(async response => {
             }
             break;
         case 401:
-            toast.warning('Unauthorised')
+            toast.warning('Unauthorized')
             break;
         case 403:
             toast.error('Forbidden')
@@ -68,7 +68,7 @@ axios.interceptors.response.use(async response => {
 const requests = {
     get: <T>(url: string) => axios.get(url).then(response),
     post: <T>(url: string, body: {}) => axios.post(url, body).then(response),
-    put: <T>(url: string, body: {}) => axios.patch(url, body).then(response),
+    put: <T>(url: string, body: {}) => axios.put(url, body).then(response),
     delete: <T>(url: string) => axios.delete<T>(url).then(response)
 }
 
@@ -76,9 +76,10 @@ const post = {
     list: () => requests.get(postModule),
     listWithFilter: (params: URLSearchParams) => axios.get<IPaginatedResult<IPost[]>>(postModule, { params }).then(response),
     details: (id: string) => requests.get<IPost>(`${postModule}/${id}`),
-    create: (post: IPost) => axios.post<IPost>(postModule, post).then(() => { toast.success('Sucess') }),
-    edit: (post: IPost) => axios.put<IPost>(`${postModule}/${post.id}`, post).then(() => { toast.success('Sucess') }),
-    delete: (id: string) => requests.delete<void>(`${postModule}/${id}`)
+    create: (post: PostFormValues) => requests.post<IPost>(postModule, post).then(() => { toast.success('Sucess') }),
+    edit: (post: PostFormValues) => requests.put<IPost>(`${postModule}/${post.id}`, post).then(() => { toast.success('Sucess') }),
+    delete: (id: string) => requests.delete<void>(`${postModule}/${id}`),
+    attend: (id: string) => requests.post<void>(`${postModule}/${id}/attend`, {})
 }
 
 const account = {

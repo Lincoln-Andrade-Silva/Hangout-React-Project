@@ -51,7 +51,7 @@ export default function TestErrors() {
                     <Button.Or />
                     <Button onClick={handleServerError} content='Server Error' color='blue' />
                     <Button.Or />
-                    <Button onClick={handleUnauthorised} content='Unauthorised' color='yellow' />
+                    <Button onClick={handleUnauthorised} content='Unauthorized' color='yellow' />
                     <Button.Or />
                     <Button onClick={handleBadGuid} content='Bad Guid' color='red' />
                 </Button.Group>
