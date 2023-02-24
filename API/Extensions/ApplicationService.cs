@@ -1,7 +1,10 @@
+using Application.Core.Mapper.PostMapper;
+using Application.Interfaces;
 using Application.Service.Posts;
 using Domain;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -29,10 +32,12 @@ namespace API.Extensions
                 });
             });
             services.AddMediatR(typeof(List.Handler));
-            services.AddAutoMapper(typeof(Post).Assembly);
+            services.AddAutoMapper(typeof(PostMapper).Assembly);
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
-             services.AddValidatorsFromAssemblyContaining<Edit>();
+            services.AddValidatorsFromAssemblyContaining<Edit>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
         }

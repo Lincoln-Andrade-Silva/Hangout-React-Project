@@ -1,6 +1,6 @@
-using Application.Core;
+using Application.Core.Page;
 
-namespace Application.Core.Page
+namespace Application.Core.Model.Posts
 {
     public class PostParams : PagingParams
     {

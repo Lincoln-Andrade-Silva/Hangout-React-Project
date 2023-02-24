@@ -4,6 +4,7 @@ using Application.Service;
 using Microsoft.AspNetCore.Mvc;
 using Application.Service.Posts;
 using Microsoft.AspNetCore.Authorization;
+using Application.Core.Model.Attendee;
 
 namespace API.Controllers
 {
@@ -35,6 +36,7 @@ namespace API.Controllers
             return HandleResult(await this.Mediator.Send(new Create.Command { Post = Post }));
         }
 
+        [Authorize(Policy = "IsPostHost")]
         [HttpPut("{Id}")]
         public async Task<ActionResult<Post>> edit(Guid Id, Post Post)
         {
@@ -46,6 +48,12 @@ namespace API.Controllers
         public async Task<ActionResult<Post>> delete(Guid Id)
         {
             return HandleResult(await this.Mediator.Send(new Delete.Command { Id = Id }));
+        }
+
+        [HttpPost("{id}/attend")]
+        public async Task<ActionResult<Post>> Attend(Guid id)
+        {
+            return HandleResult(await this.Mediator.Send(new UpdateAttendance.Command { Id = id }));
         }
     }
 }

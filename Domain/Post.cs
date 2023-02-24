@@ -9,5 +9,7 @@ namespace Domain
         public String City { get; set; }
         public String Venue { get; set; }
         public String Category { get; set; }
+        public bool IsCancelled { get; set; }
+        public ICollection<PostAttendee> Attendees { get; set; } = new List<PostAttendee>();
     }
 }
