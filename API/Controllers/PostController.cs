@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+
     public class PostController : BaseApi
     {
         private new readonly IMediator Mediator;
@@ -22,7 +22,6 @@ namespace API.Controllers
             return HandleResult(await this.Mediator.Send(new List.Query()));
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult> get(Guid Id)
         {
