@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { List, Popup, Image } from "semantic-ui-react";
 import { IProfile } from "../../../app/models/IProfile";
+import ProfileCard from "../../profile/ProfileCard";
 
 interface Props {
     attendees: IProfile[];
@@ -33,6 +34,9 @@ export default observer(function PostListAttendee({ attendees }: Props) {
                                 style={attendee.following ? styles : null}
                             />
                         </List.Item>}>
+                    <Popup.Content>
+                        <ProfileCard profile={attendee} />
+                    </Popup.Content>
                 </Popup>
             ))}
         </List>

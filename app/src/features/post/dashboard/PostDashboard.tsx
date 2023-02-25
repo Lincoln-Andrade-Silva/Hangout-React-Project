@@ -10,7 +10,7 @@ import PostList from "./list/PostList";
 
 export default observer(function PostDashboard() {
     const { postStore } = useStore();
-    const { listPosts, posts, predicate, setPredicate } = postStore;
+    const { listPosts, posts } = postStore;
 
     useEffect(() => {
         if (posts.size <= 0) listPosts();

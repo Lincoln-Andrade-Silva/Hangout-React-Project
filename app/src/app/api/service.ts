@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IPaginatedResult } from '../models/IPaginationModels';
 import { IPost, PostFormValues } from '../models/IPost';
-import { User, UserFormValues } from '../models/User';
+import { IProfile, IUserPost } from '../models/IProfile';
+import { IUser, IUserFormValues } from '../models/IUser';
 import { router } from '../router/Route';
 import { store } from '../stores/store';
 
@@ -83,14 +84,24 @@ const post = {
 }
 
 const account = {
-    current: () => requests.get<User>(accountModule),
-    login: (user: UserFormValues) => requests.post<User>(accountModule + '/login', user),
-    register: (user: UserFormValues) => requests.post<User>(accountModule + '/register', user),
+    current: () => requests.get<IUser>(accountModule),
+    login: (user: IUserFormValues) => requests.post<IUser>(accountModule + '/login', user),
+    register: (user: IUserFormValues) => requests.post<IUser>(accountModule + '/register', user),
+}
+
+const profiles = {
+    get: (username: string) => requests.get<IProfile>(`/profile/${username}`),
+    updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
+    listFollowing: (username: string, predicate: string) =>
+        requests.get<IProfile[]>(`/follow/${username}?predicate=${predicate}`),
+    listPosts: (username: string, predicate: string) =>
+        requests.get<IUserPost[]>(`/profile/${username}/posts?predicate=${predicate}`)
 }
 
 const service = {
     post,
-    account
+    account,
+    profiles
 }
 
 export default service;

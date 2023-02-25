@@ -1,11 +1,10 @@
-import { makeAutoObservable, reaction, runInAction } from "mobx";
-import { v4 as uuid } from 'uuid';
-import service from "../../api/service";
-import { IPost, PostFormValues } from "../../models/IPost";
-import { IPagination, IPagingParams } from "../../models/IPaginationModels";
 import { format } from "date-fns";
-import { store } from "../store";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
+import service from "../../api/service";
+import { IPagination, IPagingParams } from "../../models/IPaginationModels";
+import { IPost, PostFormValues } from "../../models/IPost";
 import { IProfile } from "../../models/IProfile";
+import { store } from "../store";
 
 export default class PostStore {
     posts = new Map<string, IPost>();
@@ -31,6 +30,10 @@ export default class PostStore {
 
     setIPagingParams = (pagingParams: IPagingParams) => {
         this.pagingParams = pagingParams;
+    }
+
+    setIPagination = (pagination: IPagination) => {
+        this.pagination = pagination;
     }
 
     setPredicate = (predicate: string, value: string | Date) => {
@@ -118,7 +121,7 @@ export default class PostStore {
             newPost.attendees = [attendee];
             this.setPost(newPost);
             runInAction(() => {
-                this.selectedPost = new IPost;
+                this.selectedPost = new IPost();
             })
         } catch (error) {
             console.log(error);
@@ -221,8 +224,15 @@ export default class PostStore {
 
     }
 
-    setIPagination = (pagination: IPagination) => {
-        this.pagination = pagination;
+    updateAttendeeFollowing = (username: string) => {
+        this.posts.forEach(post => {
+            post.attendees.forEach(attendee => {
+                if (attendee.username === username) {
+                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+                    attendee.following = !attendee.following;
+                }
+            })
+        })
     }
 
     private setLoadingInitial = (state: boolean) => {

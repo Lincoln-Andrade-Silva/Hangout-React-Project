@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Segment, List, Item, Label, Image, Popup, Header } from "semantic-ui-react";
 import { IPost } from "../../../app/models/IPost";
+import ProfileCard from "../../profile/ProfileCard";
 
 interface Props {
     post: IPost
@@ -48,6 +49,9 @@ export default observer(function PostDetailedSideba({ post: { attendees, host } 
                                             <Item.Extra>Following</Item.Extra>}
                                     </Item.Content>
                                 </Item>}>
+                            <Popup.Content>
+                                <ProfileCard profile={attendee} />
+                            </Popup.Content>
                         </Popup>
                     ))}
                 </List>
