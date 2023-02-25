@@ -20,20 +20,38 @@ export default observer(function ProfileCard({ profile }: Props) {
     const { userStore } = useStore();
 
     return (
-        <Card as={Link} to={`/profile/${profile.username}`} style={{ width: 160, textAlign: 'center' }}>
-            {profile.image ?
-                <Image src={profile.image} /> :
-                <Image src={'assets/user.png'} />
-            }
+        <Card style={{ backgroundColor: '#000017', borderRadius: 10, boxShadow: '2px 2px 2px 1px #17234a' }}>
             <Card.Content>
-                <Card.Header>{profile.displayName}</Card.Header>
-                <Card.Description>{truncate(profile.bio)}</Card.Description>
+                <div style={{ color: 'white', float: 'right', position: 'relative' }}>
+                    {userStore.user?.username !== profile.username &&
+                        <FollowButtom profile={profile} />
+                    }
+                </div>
+                {profile.image ?
+                    <Image floated="left" src={profile.image} avatar style={{ height: 50, width: 50 }} /> :
+                    <Image floated="left" src={'assets/user.png'} avatar style={{ height: 50, width: 50 }} />
+                }
+                <Card.Header style={{ marginTop: 5, color: 'white' }}>{profile.displayName}
+                </Card.Header>
+                <Card.Meta style={{ color: 'grey' }}>@{profile.username}</Card.Meta>
+                <Card.Description style={{ color: 'white', marginLeft: 5, marginTop: 5 }}>
+                    {profile.bio ? truncate(profile.bio) : 'bio 🔥'}
+                </Card.Description>
             </Card.Content>
-            {userStore.user?.username !== profile.username &&
-                <Card.Content extra>
-                    <FollowButtom profile={profile} />
-                </Card.Content>
-            }
-        </Card>
+            <Card.Content style={{ marginLeft: 5, color: 'grey' }}>
+                <span style={{ marginRight: 12, color: 'white' }}>
+                    {profile.followersCount ? profile.followersCount : 0}
+                    <span style={{ marginLeft: 5, color: 'grey' }}>
+                        Followers
+                    </span>
+                </span>
+                <span style={{ marginRight: 12, color: 'white' }}>
+                    {profile.followingCount ? profile.followingCount : 0}
+                    <span style={{ marginLeft: 5, color: 'grey' }}>
+                        Following
+                    </span>
+                </span>
+            </Card.Content>
+        </Card >
     )
 })

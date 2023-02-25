@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Segment, List, Item, Label, Image, Popup, Header } from "semantic-ui-react";
 import { IPost } from "../../../app/models/IPost";
+import FollowButtom from "../../profile/FollowButtom";
 import ProfileCard from "../../profile/ProfileCard";
 
 interface Props {
@@ -25,34 +26,25 @@ export default observer(function PostDetailedSideba({ post: { attendees, host } 
             <Segment attached>
                 <List relaxed divided>
                     {attendees.map(attendee => (
-                        <Popup
-                            hoverable
-                            position="left center"
-                            key={attendee.username}
-                            trigger={
-                                <Item style={{ position: 'relative' }} key={attendee.username}>
-                                    {attendee.username === host?.username &&
-                                        <Label
-                                            color="violet"
-                                            style={{ position: 'absolute' }}
-                                            ribbon='right'
-                                        >
-                                            Host
-                                        </Label>
-                                    }
-                                    <Image size='tiny' src={attendee.image || '/assets/user.png'} />
-                                    <Item.Content verticalAlign='middle' style={{ color: "#405c9c", fontWeight: 600 }}>
-                                        <Item.Header as='h3'>
-                                            <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
-                                        </Item.Header>
-                                        {attendee.following &&
-                                            <Item.Extra>Following</Item.Extra>}
-                                    </Item.Content>
-                                </Item>}>
-                            <Popup.Content>
-                                <ProfileCard profile={attendee} />
-                            </Popup.Content>
-                        </Popup>
+                        <Item style={{ position: 'relative' }} key={attendee.username} as={Link} to={`/profile/${attendee.username}`}>
+                            {attendee.username === host?.username &&
+                                <Label
+                                    color="violet"
+                                    style={{ position: 'absolute' }}
+                                    ribbon='right'
+                                >
+                                    Host
+                                </Label>
+                            }
+                            <Image size='tiny' src={attendee.image || '/assets/user.png'} />
+                            <Item.Content verticalAlign='middle' style={{ color: "#405c9c", fontWeight: 600 }}>
+                                <Item.Header as='h3'>
+                                    <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
+                                </Item.Header>
+                                {attendee.following &&
+                                    <Item.Extra>Following</Item.Extra>}
+                            </Item.Content>
+                        </Item>
                     ))}
                 </List>
             </Segment>

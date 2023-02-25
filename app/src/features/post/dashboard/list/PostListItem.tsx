@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
+import { Button, Icon, Item, Label, Segment, Comment } from "semantic-ui-react";
 import { IPost } from "../../../../app/models/IPost";
 import PostListItemAttendee from "../../details/PostListItemAttendee";
 
@@ -53,7 +53,7 @@ export default function PostListItem({ post }: Props) {
                 </span>
             </Segment>
             <Segment secondary id='attendee-back'>
-                <PostListItemAttendee attendees={post.attendees} />
+                <PostListItemAttendee post={post} />
             </Segment>
             <Segment clearing>
                 <span>{post.description}</span>
@@ -64,6 +64,23 @@ export default function PostListItem({ post }: Props) {
                     floated="right"
                     content='View'
                 />
+            </Segment>
+            <Segment>
+                <Comment.Group>
+                    <Comment>
+                        <Comment.Avatar src='/assets/user.png' />
+                        <Comment.Content>
+                            <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                            <Comment.Metadata>
+                                <div>5 days ago</div>
+                            </Comment.Metadata>
+                            <Comment.Text>Dude, this is awesome.</Comment.Text>
+                            <Comment.Actions>
+                                <Comment.Action>Reply</Comment.Action>
+                            </Comment.Actions>
+                        </Comment.Content>
+                    </Comment>
+                </Comment.Group>
             </Segment>
         </Segment.Group>
     )

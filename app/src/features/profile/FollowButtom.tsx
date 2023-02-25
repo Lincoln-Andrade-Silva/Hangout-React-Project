@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent } from "react";
 import { Button, Reveal } from "semantic-ui-react";
 import { IProfile } from "../../app/models/IProfile";
-import { IUser } from "../../app/models/IUser";
 import { useStore } from "../../app/stores/store";
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 }
 
 export default observer(function FollowButton({ profile }: Props) {
-    const { profileStore, userStore } = useStore();
+    const { profileStore } = useStore();
     const { updateFollowing, loading } = profileStore;
 
     function handleFollow(e: SyntheticEvent, username: string) {
@@ -19,21 +18,13 @@ export default observer(function FollowButton({ profile }: Props) {
     }
 
     return (
-        <Reveal animated="move" fluid style={{ margin: 'auto', textAlign: 'center' }}>
-            <Reveal.Content visible style={{ width: '100%', marginBotton: 10 }}>
-                <Button
-                    fluid
-                    color="facebook"
-                    content={profile.following ? "Following" : "Not following"} />
-            </Reveal.Content>
-            <Reveal.Content hidden style={{ width: '100%' }}>
-                <Button
-                    fluid
-                    color={profile.following ? 'red' : 'green'}
-                    content={profile.following ? 'Unfollow' : 'Follow'}
-                    loading={loading}
-                    onClick={(e) => handleFollow(e, profile.username)} />
-            </Reveal.Content>
-        </Reveal>
+        <Button
+            color={profile.following ? 'red' : 'facebook'}
+            content={profile.following ? 'Unfollow' : 'Follow'}
+            loading={loading}
+            style={{ margin: 'auto', textAlign: 'center', fontSize: 10, borderRadius: 20, marginTop: 3 }}
+            onClick={(e) => handleFollow(e, profile.username)}
+            size='tiny'
+        />
     )
 })
