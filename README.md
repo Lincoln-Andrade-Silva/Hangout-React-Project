@@ -1,4 +1,4 @@
-# Sunflower-React-Project
+# Hangout-React-Project
 
 Web application developed in react using .Net 7.0, React 18 (with Typescript) and Mobx.
 
