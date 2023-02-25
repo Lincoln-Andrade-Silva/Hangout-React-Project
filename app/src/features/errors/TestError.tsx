@@ -33,15 +33,15 @@ export default function TestErrors() {
 
     return (
         <>
-            <Header as='h2' icon textAlign='center' size='huge' style={{marginBottom:50}}>
+            <Header as='h2' icon textAlign='center' size='huge' style={{ marginBottom: 50 }}>
                 <Icon name='warning sign' color='red' />
-                <Header.Content>
+                <Header.Content style={{ color: 'white' }}>
                     Errors Component
-                    <Header.Subheader> Test the Exeptions </Header.Subheader>
+                    <Header.Subheader style={{ color: 'gray' }}> Test the Exeptions </Header.Subheader>
                 </Header.Content>
             </Header>
 
-            <Segment position='right' size='huge'>
+            <Segment position='right' size='huge' style={{ backgroundColor: 'transparent', border: '0' }}>
                 <Button.Group widths="6" size='large'>
                     <Button onClick={handleNotFound} content='Not Found' color='teal' />
                     <Button.Or />

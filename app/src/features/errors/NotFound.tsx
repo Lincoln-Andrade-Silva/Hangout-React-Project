@@ -4,7 +4,7 @@ import { Button, Header, Icon, Segment } from "semantic-ui-react";
 
 export default function NotFound() {
     return (
-        <Segment placeholder>
+        <Segment placeholder style={{ borderRadius: 50, padding: 0, width: 600, margin:'auto'}}>
             <Header as='h2' icon size='huge' style={{ marginBottom: 50, marginTop: 50 }}>
                 <Icon name='search' color='black' />
                 <Header.Content>
@@ -13,7 +13,7 @@ export default function NotFound() {
                 </Header.Content>
             </Header>
             <Segment.Inline style={{ marginBottom: 50 }} >
-                <Button as={Link} to='/dashboard' color="teal" size="large" circular>
+                <Button as={Link} to='/dashboard' color="violet" size="large" circular>
                     Return Dashboard..
                 </Button>
             </Segment.Inline>
