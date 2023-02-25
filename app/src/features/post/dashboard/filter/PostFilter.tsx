@@ -11,7 +11,6 @@ export default observer(function PostFilter() {
             <Dropdown
                 icon='filter'
                 className='button icon'
-                basic
             >
                 <Dropdown.Menu>
                     <Dropdown.Item

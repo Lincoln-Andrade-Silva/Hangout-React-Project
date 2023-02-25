@@ -1,9 +1,9 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import Calendar from "react-calendar";
 import { Grid, GridRow } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
+import CalendarFilter from "./filter/CalendarFilter";
 import PostFilter from "./filter/PostFilter";
 import SearchBar from "./filter/SearchBar";
 import PostList from "./list/PostList";
@@ -23,15 +23,10 @@ export default observer(function PostDashboard() {
             <GridRow centered>
                 <SearchBar />
                 <PostFilter />
+                <CalendarFilter />
             </GridRow>
-            <Grid.Column width='10'>
+            <Grid.Column width='12' style={{ margin: 'auto' }}>
                 <PostList />
-            </Grid.Column>
-            <Grid.Column width='6' style={{ marginTop: 28 }}>
-                <Calendar
-                    onChange={(date: Date) => setPredicate('startDate', date as Date)}
-                    value={predicate.get('startDate' || new Date())}
-                />
             </Grid.Column>
         </Grid>
     )

@@ -18,26 +18,28 @@ export default function PostListItem({ post }: Props) {
                 }
                 <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" circular src={post.host?.image || '/assets/user.png'} />
+                        <Item.Image size="tiny" avatar circular src={post.host?.image || '/assets/user.png'} />
                         <Item.Content>
+                            <Item.Header as={Link} to={`/activities/${post.id}`} style={{ marginTop: '2.5vh' }}>
+                                {post.title}
+                            </Item.Header>
                             {post.isHost && (
                                 <Item.Description style={{ position: 'relative' }}>
-                                    <Label color="yellow" ribbon='right' style={{ position: 'absolute' }}>
+                                    <Label color="blue" ribbon='right' style={{ position: 'absolute' }}>
                                         You are hosting
                                     </Label>
                                 </Item.Description>
                             )}
                             {!post.isHost && post.isGoing && (
                                 <Item.Description style={{ position: 'relative' }}>
-                                    <Label color="green" ribbon='right' style={{ position: 'absolute' }}>
+                                    <Label color="violet" ribbon='right' style={{ position: 'absolute' }}>
                                         You are going
                                     </Label>
                                 </Item.Description>
                             )}
-                            <Item.Header as={Link} to={`/activities/${post.id}`} style={{ marginTop: '2.5vh' }}>
-                                {post.title}
-                            </Item.Header>
-                            <Item.Description>Hosted by <Link to={`/profile/${post.host?.username}`}> {post.host?.username}</Link></Item.Description>
+                            <Item.Description>
+                                Hosted by <Link to={`/profile/${post.host?.username}`}> {post.host?.username}</Link>
+                            </Item.Description>
                             <Item.Extra>{post.category}</Item.Extra>
                         </Item.Content>
                     </Item>
@@ -58,7 +60,7 @@ export default function PostListItem({ post }: Props) {
                 <Button
                     as={Link}
                     to={`/post/${post.id}`}
-                    color='teal'
+                    color='facebook'
                     floated="right"
                     content='View'
                 />

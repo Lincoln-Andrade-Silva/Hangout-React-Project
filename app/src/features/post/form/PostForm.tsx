@@ -85,9 +85,10 @@ export default observer(function PostForm() {
                             disabled={isSubmitting || !dirty || !isValid}
                             loading={isSubmitting}
                             floated='right'
-                            positive type='submit'
+                            type='submit'
                             content='Submit'
                             size='tiny'
+                            color='facebook'
                             style={{ marginTop: 20, marginLeft: 10, marginRight: 10, width: 110 }} />
                         <Button
                             as={Link} to='/dashboard'

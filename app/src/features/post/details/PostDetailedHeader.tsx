@@ -6,7 +6,8 @@ import { IPost } from '../../../app/models/IPost';
 import { useStore } from '../../../app/stores/store';
 
 const postImageStyle = {
-    filter: 'brightness(30%)'
+    filter: 'brightness(30%)',
+    width:700
 };
 
 const postImageTextStyle = {
@@ -27,22 +28,21 @@ export default observer(function PostDetailedHeader({ post }: Props) {
 
     return (
         <Segment.Group>
-            <Segment basic attached='top' style={{ padding: '0' }} >
-                <Image src={`/assets/categoryImages/${post.category}.jpg`} fluid style={postImageStyle} />
+            <Segment basic attached='top' style={{ padding: '0', border: '0' }} >
+                <Image src={`/assets/categoryImages/${post.category}.jpg`} style={postImageStyle} />
                 <Segment style={postImageTextStyle} basic>
                     <Item.Group>
                         <Item>
                             <Item.Content>
                                 <Header
-                                    size='huge'
                                     content={post.title}
-                                    style={{ color: 'white' }}
+                                    style={{ color: 'white', fontSize: 32 }}
                                 />
-                                <p>{format(post.date, 'MM/dd/yyyy')}</p>
-                                <p>
+                                <p style={{ fontSize: 17 }}>{format(post.date, 'MM/dd/yyyy')}</p>
+                                <p style={{ fontSize: 14 }}>
                                     Hosted by
                                     <strong>
-                                        <Link to={`/profile/${post.host?.username}`}>
+                                        <Link to={`/profile/${post.host?.username}`} color="facebook">
                                             {' ' + post.host?.displayName}
                                         </Link>
                                     </strong>
@@ -56,7 +56,7 @@ export default observer(function PostDetailedHeader({ post }: Props) {
                 {post.isHost ? (
                     <>
                         <Button
-                            color={post.isCancelled ? 'green' : 'red'}
+                            color={post.isCancelled ? 'facebook' : 'red'}
                             floated='left'
                             content={post.isCancelled ? 'Re-activate Post' : 'Cancel Post'}
                             onClick={cancelPostToggle}
@@ -65,7 +65,7 @@ export default observer(function PostDetailedHeader({ post }: Props) {
                         <Dropdown
                             as={Button}
                             floated='right'
-                            color='yellow'
+                            color='green'
                             text='Manage Post'
                             floating
                             labeled

@@ -44,10 +44,9 @@ export default observer(function RegisterForm() {
                     <Header align='center' style={{ margin: 9, marginTop: 20 }}>
                         <Button
                             loading={isSubmitting}
-                            positive
                             content='Register'
                             type="submit"
-                            color="yellow"
+                            color="facebook"
                             size="small"
                             disabled={!isValid || !dirty || isSubmitting}
                             fluid
@@ -59,7 +58,7 @@ export default observer(function RegisterForm() {
                         content='Already have an Account'
                         onClick={() => modalStore.openModal(<LoginForm />)}
                         textAlign="center"
-                        color="yellow"
+                        color="grey"
                     />
 
                 </Form>

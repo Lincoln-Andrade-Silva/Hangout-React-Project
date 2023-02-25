@@ -12,11 +12,11 @@ export default function HomePage() {
             <Container text>
                 <Header as='h1' inverted>
                     <Image src='/assets/logo.png' alt='logo' style={{ marginBottom: 12, width: '110px', height: "110px" }} />
-                    Sunflower
+                    Hangout
                 </Header>
                 {userStore.IsLoggedIn ? (
                     <>
-                        <Header inverted as='h2' content='Welcome to Sunflower' />
+                        <Header inverted as='h2' content='Welcome to Hangout' />
                         <Button as={Link} to='/dashboard' size='huge' style={{ marginTop: "3vh" }} inverted>
                             Go to Dashboard
                         </Button>

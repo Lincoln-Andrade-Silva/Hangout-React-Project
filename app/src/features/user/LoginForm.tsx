@@ -27,7 +27,7 @@ export default observer(function LoginForm() {
                         <Image src='/assets/logo.png' alt='logo'
                             style={{ marginBottom: 10, width: 80, height: 80, marginTop: 2 }} />
                         <br />
-                        Login in Sunflower
+                        Login in Hangout
                     </Header>
                     <MyTextInput name="email" placeholder="Email" />
                     <MyTextInput name="password" placeholder="Password" type='password' />
@@ -46,11 +46,10 @@ export default observer(function LoginForm() {
                         <Button
                             style={{ marginTop: '3vh' }}
                             loading={isSubmitting}
-                            positive
                             disabled={!isValid || !dirty || isSubmitting}
                             content='Login'
                             type="submit"
-                            color="yellow"
+                            color="facebook"
                             size="small"
                             fluid
                         />
@@ -59,7 +58,7 @@ export default observer(function LoginForm() {
                             as='h5'
                             textAlign="center"
                             content='Forget your Password'
-                            color="yellow"
+                            color="grey"
                         />
 
                         <Button

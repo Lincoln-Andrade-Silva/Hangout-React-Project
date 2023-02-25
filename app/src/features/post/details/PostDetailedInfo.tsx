@@ -14,7 +14,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
             <Segment attached='top'>
                 <Grid>
                     <Grid.Column width={1}>
-                        <Icon size='large' color='teal' name='info' />
+                        <Icon size='large' style={{ color: "#405c9c" }} name='info' />
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <p>{post.description}</p>
@@ -24,7 +24,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
             <Segment attached>
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={1}>
-                        <Icon name='calendar outline' size='large' color='teal' />
+                        <Icon name='calendar outline' size='large' style={{ color: "#405c9c" }} />
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
@@ -36,7 +36,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
             <Segment attached>
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={1}>
-                        <Icon name='clock outline' size='large' color='teal' />
+                        <Icon name='clock outline' size='large' style={{ color: "#405c9c" }} />
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
@@ -48,7 +48,7 @@ export default observer(function PostDetailedInfo({ post }: Props) {
             <Segment attached>
                 <Grid verticalAlign='middle'>
                     <Grid.Column width={1}>
-                        <Icon name='map marker alternate' size='large' color='teal' />
+                        <Icon name='map marker alternate' size='large' style={{ color: "#405c9c" }} />
                     </Grid.Column>
                     <Grid.Column width={11}>
                         <span>{post.venue}, {post.city}</span>
