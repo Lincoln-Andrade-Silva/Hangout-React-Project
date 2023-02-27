@@ -1,4 +1,5 @@
 using Application.Core.Model.Profiles;
+using Application.Core.Model.Attendee;
 
 namespace Application.Core.Model.Posts
 {
@@ -13,6 +14,6 @@ namespace Application.Core.Model.Posts
         public string Venue { get; set; }
         public string HostUsername { get; set; }
         public bool IsCancelled { get; set; }
-        public ICollection<Profile> Attendees { get; set; }
+        public ICollection<AttendeeDTO> Attendees { get; set; }
     }
 }

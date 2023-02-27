@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Button, Dropdown } from "semantic-ui-react";
+import { Header, Menu } from "semantic-ui-react";
 import { useStore } from "../../../../app/stores/store";
 
 export default observer(function PostFilter() {
@@ -7,29 +7,23 @@ export default observer(function PostFilter() {
     const { predicate, setPredicate } = postStore;
 
     return (
-        <Button.Group floated="left" style={{ marginLeft: 5 }} size="big">
-            <Dropdown
-                icon='filter'
-                className='button icon'
-            >
-                <Dropdown.Menu>
-                    <Dropdown.Item
-                        content="All Posts"
-                        active={predicate.has('all')}
-                        onClick={() => setPredicate('all', 'true')}
-                    />
-                    <Dropdown.Item
-                        content="I'm going"
-                        active={predicate.has('isGoing')}
-                        onClick={() => setPredicate('isGoing', 'true')}
-                    />
-                    <Dropdown.Item
-                        content="I'm hosting"
-                        active={predicate.has('isHost')}
-                        onClick={() => setPredicate('isHost', 'true')}
-                    />
-                </Dropdown.Menu>
-            </Dropdown>
-        </Button.Group>
+        <>
+            <Menu vertical size='large' style={{ width: 370, marginTop: 14, margin: 'auto', fontSize:14 }}>
+                <Header fluid icon={'filter'} color='violet' content='Filters' style={{ fontSize: 16, marginTop:12, marginLeft:10 }} />
+                <Menu.Item
+                    content="All Activities"
+                    active={predicate.has('all')}
+                    onClick={() => setPredicate('all', 'true')} />
+                <Menu.Item
+                    content="I'm going"
+                    active={predicate.has('isGoing')}
+                    onClick={() => setPredicate('isGoing', 'true')} />
+                <Menu.Item
+                    content="I'm hosting"
+                    active={predicate.has('isHost')}
+                    onClick={() => setPredicate('isHost', 'true')} />
+            </Menu>
+            <Header />
+        </>
     )
-})
+})  

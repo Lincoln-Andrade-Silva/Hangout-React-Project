@@ -1,6 +1,7 @@
 using Application.Core.Mapper.PostMapper;
 using Application.Interfaces;
 using Application.Service.Posts;
+using Infrastructure.Photos;
 using Domain;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -38,6 +39,8 @@ namespace API.Extensions
             services.AddValidatorsFromAssemblyContaining<Edit>();
             services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
 
             return services;
         }

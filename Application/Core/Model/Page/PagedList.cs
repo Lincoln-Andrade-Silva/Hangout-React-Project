@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Core.Page
+namespace Application.Core.Model.Page
 {
     public class PagedList<T> : List<T>
     {

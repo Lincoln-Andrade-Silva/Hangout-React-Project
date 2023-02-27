@@ -9,7 +9,7 @@ export default observer(function CalendarComponents() {
 
 
     return (
-        <Segment fluid>
+        <Segment fluid style={{ backgroundColor: 'transparent', boxShadow: 'none', width: 400, margin: "auto" }}>
             <Calendar
                 onChange={(date: Date) => {
                     setPredicate('startDate', date as Date);

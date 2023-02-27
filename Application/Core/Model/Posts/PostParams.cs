@@ -1,4 +1,4 @@
-using Application.Core.Page;
+using Application.Core.Model.Page;
 
 namespace Application.Core.Model.Posts
 {

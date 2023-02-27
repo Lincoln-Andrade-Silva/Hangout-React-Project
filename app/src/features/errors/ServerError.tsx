@@ -10,8 +10,10 @@ export default observer(function ServerError() {
             <Header as='h2' size='huge' style={{ marginBottom: 50 }}>
                 <Icon name='hdd' color='red' />
                 <Header.Content>
-                    Server Error
-                    <Header.Subheader content={commonStore.error?.message} />
+                    <span style={{ color: 'white' }}>
+                        Server Error
+                    </span>
+                    <Header.Subheader style={{ color: 'grey' }} content={commonStore.error?.message} />
                 </Header.Content>
             </Header>
 

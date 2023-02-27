@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Container, Dropdown, Icon, Image, Menu } from "semantic-ui-react";
+import SearchBar from '../../features/post/dashboard/filter/SearchBar';
 import LoginForm from '../../features/user/LoginForm';
 import { useStore } from '../stores/store';
 
@@ -18,6 +19,10 @@ export default function NavBar() {
                 <Menu.Item>
                     <Button as={NavLink} to='/form/create' color='facebook' content='Create Post' />
                 </Menu.Item>
+                <Menu.Item>
+                    <SearchBar />
+                </Menu.Item>
+
 
                 {IsLoggedIn ? (
                     <Menu.Item position='right'>

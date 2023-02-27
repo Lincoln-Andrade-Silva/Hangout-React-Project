@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Grid, Search } from "semantic-ui-react";
+import { Grid, Header, Label, Search } from "semantic-ui-react";
 import { useStore } from "../../../../app/stores/store";
 
 export default observer(function SearchBar() {
@@ -31,7 +31,7 @@ export default observer(function SearchBar() {
         }
     }
 
-    const handleSearchChange = React.useCallback((e: any, data: any) => {
+    const handleSearchChange = React.useCallback((_e: any, data: any) => {
         dispatch({ type: 'START_SEARCH', query: data.value })
 
         if (data.value.length === 0) {
@@ -41,23 +41,31 @@ export default observer(function SearchBar() {
 
         dispatch({
             type: 'FINISH_SEARCH',
-            results: postsByDate.filter(obj => obj.title.includes(data.value))
+            results: postsByDate.filter(obj => obj.title.toLowerCase().includes(data.value.toLowerCase()))
         })
     }, [postsByDate]);
+
+    const resultRenderer = ({ title, category }: any) =>
+        <Header style={{ fontSize: 15, }}>
+            {title} <br />
+            <Label style={{ marginTop: 4, marginLeft: -1 }} content={category} />
+        </Header>
+
 
     return (
         <Grid>
             <Grid.Column>
                 <Search
                     fluid
-                    size="big"
-                    
+                    size="small"
+                    style={{marginTop:4}}
                     loading={loading}
                     placeholder='Search...'
                     onResultSelect={(e, data) => {
                         dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
                         setPredicate('Search', data.result.title)
                     }}
+                    resultRenderer={resultRenderer}
                     onSearchChange={handleSearchChange}
                     results={results}
                     value={value}

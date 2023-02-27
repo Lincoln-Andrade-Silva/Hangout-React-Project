@@ -16,7 +16,7 @@ const sleep = (delay: number) => {
 }
 
 const postModule = '/post';
-const accountModule = '/api/account';
+const accountModule = '/account';
 const response = <T>(response: AxiosResponse<T>) => response.data;
 
 axios.defaults.baseURL = 'http://localhost:5000';

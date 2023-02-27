@@ -1,4 +1,4 @@
-namespace Application.Core.Page
+namespace Application.Core.Model.Page
 {
     public class PagingParams
     {

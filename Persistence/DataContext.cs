@@ -10,6 +10,7 @@ namespace Persistence
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostAttendee> PostAttendees { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -21,7 +22,7 @@ namespace Persistence
                 .HasOne(u => u.AppUser)
                 .WithMany(a => a.Posts)
                 .HasForeignKey(b => b.AppUserId);
-           
+
             builder.Entity<PostAttendee>()
                 .HasOne(u => u.Post)
                 .WithMany(a => a.Attendees)

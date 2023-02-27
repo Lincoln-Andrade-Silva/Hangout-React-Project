@@ -1,4 +1,4 @@
-namespace Application.Core.Model
+namespace Application.Core.Model.Exeption
 {
     public class AppException
     {

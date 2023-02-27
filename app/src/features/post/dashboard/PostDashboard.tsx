@@ -1,11 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { Grid, GridRow } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
-import CalendarFilter from "./filter/CalendarFilter";
+import CalendarComponents from "./filter/CalendarComponents";
 import PostFilter from "./filter/PostFilter";
-import SearchBar from "./filter/SearchBar";
 import PostList from "./list/PostList";
 
 export default observer(function PostDashboard() {
@@ -20,13 +19,12 @@ export default observer(function PostDashboard() {
 
     return (
         <Grid>
-            <GridRow centered>
-                <SearchBar />
-                <PostFilter />
-                <CalendarFilter />
-            </GridRow>
-            <Grid.Column width='12' style={{ margin: 'auto' }}>
+            <Grid.Column width='10' style={{ margin: 'auto' }}>
                 <PostList />
+            </Grid.Column>
+            <Grid.Column width='6' style={{ marginTop: 35 }}>
+                <PostFilter />  
+                <CalendarComponents />
             </Grid.Column>
         </Grid>
     )

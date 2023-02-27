@@ -51,7 +51,7 @@ export default observer(function PostForm() {
 
     return (
         <Segment clearing style={{ marginTop: 100, marginLeft: 350, marginRight: 350 }}>
-            <Header style={{ marginBottom: 15, paddingLeft: 45, paddingTop: 20, fontSize: 18, display: 'flex' }}>
+            <Header style={{ marginBottom: 15, paddingTop: 20, fontSize: 18, display: 'flex', justifyContent: 'center' }}>
                 {id ?
                     <Icon name='edit outline' style={{ fontSize: 22, marginLeft: 5 }} /> :
                     <Icon name='plus square outline' style={{ fontSize: 25 }} />}
@@ -77,7 +77,7 @@ export default observer(function PostForm() {
                             dateFormat={'MMMM, d ,yyyy  h: mm aa'}
                         />
 
-                        <Header style={{ marginBottom: 15, paddingLeft: 50, fontSize: 18 }} content="Location Details" />
+                        <Header style={{ marginBottom: 15, fontSize: 18, display: 'flex', justifyContent: 'center' }} content="Location Details" />
                         <MyTextInput placeholder='City' name='city' />
                         <MyTextInput placeholder='Venue' name='venue' />
 
