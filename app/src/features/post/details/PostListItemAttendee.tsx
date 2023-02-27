@@ -24,9 +24,10 @@ export default observer(function PostListAttendee({ post }: Props) {
         <List horizontal>
             {post.attendees.map(attendee => (
                 <Popup
-                    hoverable
+                    
                     key={attendee.username}
-                    position="top center"
+                    position="top right"
+                    positionFixed
                     style={{ backgroundColor: 'transparent', border: 0, boxShadow: 'none' }}
                     trigger={
                         <List.Item
@@ -47,7 +48,7 @@ export default observer(function PostListAttendee({ post }: Props) {
                                     style={attendee.following ? styles : null}
                                 />)}
                         </List.Item>}>
-                    <Popup.Content>
+                    <Popup.Content >
                         <ProfileCard profile={attendee} />
                     </Popup.Content>
                 </Popup>

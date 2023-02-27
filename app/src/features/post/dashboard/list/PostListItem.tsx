@@ -18,9 +18,9 @@ export default function PostListItem({ post }: Props) {
                 }
                 <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" avatar circular src={post.host?.image || '/assets/user.png'} />
+                        <Item.Image style={{marginTop:12}} size="tiny" avatar circular src={post.host?.image || '/assets/user.png'} />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/activities/${post.id}`} style={{ marginTop: '2.5vh' }}>
+                            <Item.Header as={Link} to={`/post/${post.id}`} style={{ marginTop: '2.5vh' }}>
                                 {post.title}
                             </Item.Header>
                             {post.isHost && (
@@ -40,7 +40,9 @@ export default function PostListItem({ post }: Props) {
                             <Item.Description>
                                 Hosted by <Link to={`/profile/${post.host?.username}`}> {post.host?.username}</Link>
                             </Item.Description>
-                            <Item.Extra>{post.category}</Item.Extra>
+                            <Item.Extra>
+                                <Label horizontal>{post.category}</Label>
+                            </Item.Extra>
                         </Item.Content>
                     </Item>
                 </Item.Group>

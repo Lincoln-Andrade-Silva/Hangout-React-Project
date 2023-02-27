@@ -19,7 +19,7 @@ export default function NavBar() {
                 <Menu.Item>
                     <Button as={NavLink} to='/form/create' color='facebook' content='Create Post' />
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item  >
                     <SearchBar />
                 </Menu.Item>
 
@@ -31,9 +31,9 @@ export default function NavBar() {
                             text={user?.displayName || 'User'}
                             style={{ fontWeight: 900 }}
                         >
-                            <Dropdown.Menu style={{ marginTop: 16, fontSize: 13 }}>
+                            <Dropdown.Menu style={{ marginTop: 16, fontSize: 16 }}>
                                 <Dropdown.Item as={Link} to={`/profile/${user?.username}`}>
-                                    <Image src={user?.image || '/assets/user.png'} avatar floated='left' style={{ height: 18, width: 18 }} /> Profile
+                                    <Icon name='user' floated='left' color='grey' /> Profile
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={logout} style={{ fontSize: 13 }} >
                                     <Icon name='power off' floated='left' color='grey' /> Logout

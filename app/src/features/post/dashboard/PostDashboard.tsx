@@ -22,7 +22,7 @@ export default observer(function PostDashboard() {
             <Grid.Column width='10' style={{ margin: 'auto' }}>
                 <PostList />
             </Grid.Column>
-            <Grid.Column width='6' style={{ marginTop: 35 }}>
+            <Grid.Column width='6' style={{ marginTop: 50 }}>
                 <PostFilter />  
                 <CalendarComponents />
             </Grid.Column>

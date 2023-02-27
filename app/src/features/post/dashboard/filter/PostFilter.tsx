@@ -8,8 +8,8 @@ export default observer(function PostFilter() {
 
     return (
         <>
-            <Menu vertical size='large' style={{ width: 370, marginTop: 14, margin: 'auto', fontSize:14 }}>
-                <Header fluid icon={'filter'} color='violet' content='Filters' style={{ fontSize: 16, marginTop:12, marginLeft:10 }} />
+            <Menu vertical size='large' style={{ width: 370, margin: 'auto', fontSize: 14 }}>
+                <Header fluid icon={'filter'} color='violet' content='Filters' style={{ fontSize: 16, marginTop: 12, marginLeft: 10 }} />
                 <Menu.Item
                     content="All Activities"
                     active={predicate.has('all')}

@@ -1,15 +1,14 @@
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
-import { Segment, List, Item, Label, Image, Popup, Header } from "semantic-ui-react";
+import { Header, Image, Item, Label, List, Segment } from "semantic-ui-react";
 import { IPost } from "../../../app/models/IPost";
-import FollowButtom from "../../profile/FollowButtom";
-import ProfileCard from "../../profile/ProfileCard";
 
 interface Props {
     post: IPost
 }
 
 export default observer(function PostDetailedSideba({ post: { attendees, host } }: Props) {
+
     if (!attendees) return null;
     return (
         <>
@@ -36,8 +35,8 @@ export default observer(function PostDetailedSideba({ post: { attendees, host } 
                                     Host
                                 </Label>
                             }
-                            <Image size='tiny' src={attendee.image || '/assets/user.png'} />
-                            <Item.Content verticalAlign='middle' style={{ color: "#405c9c", fontWeight: 600 }}>
+                            <Image avatar size='tiny' src={attendee.image || '/assets/user.png'} />
+                            <Item.Content verticalAlign='middle' style={{ color: "#405c9c", fontWeight: 600, marginTop: 2 }}>
                                 <Item.Header as='h3'>
                                     <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
                                 </Item.Header>
