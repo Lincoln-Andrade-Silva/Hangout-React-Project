@@ -5,6 +5,33 @@ body {
   background-attachment: fixed !important;
 }
 
+.ui.tiny.statistic>.value,
+.ui.tiny.statistics .statistic>.value {
+  color: white !important;
+}
+
+.ui.statistic>.value~.label,
+.ui.statistics .statistic>.value~.label {
+  color: white !important;
+}
+
+.ui.tabular.menu {
+  display: flex !important;
+  justify-content: center !important;
+  border: transparent !important;
+  border-radius: 10px !important;
+  box-shadow: 2px 2px 2px 1px #17234a !important;
+  background-color: #000017 !important;
+}
+
+.ui.tabular.menu .item {
+  color: white !important;
+}
+
+.ui.tabular.menu .active.item {
+  color: #000017!important;
+}
+
 .ui.inverted.top.fixed.menu {
   background-color: #000017 !important;
 }

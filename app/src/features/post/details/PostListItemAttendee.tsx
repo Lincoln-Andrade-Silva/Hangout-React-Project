@@ -17,7 +17,7 @@ export default observer(function PostListAttendee({ post }: Props) {
 
     const hostStyle = {
         borderColor: '#405c9c',
-        borderWidth: 2
+        borderWidth: 3
     }
 
     return (
