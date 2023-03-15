@@ -29,11 +29,25 @@ body {
 }
 
 .ui.tabular.menu .active.item {
-  color: #000017!important;
+  color: #000017 !important;
 }
 
 .ui.inverted.top.fixed.menu {
   background-color: #000017 !important;
+}
+
+.photoButtons {
+  display: flex !important;
+  position: absolute !important;
+  margin-left: 60px !important;
+  margin-top: 25px !important;
+  width: fit-content !important;
+  text-align: center !important;
+}
+
+.photoButt {
+  border-radius: 10% !important;
+  font-size: 10px !important;
 }
 
 .react-calendar {

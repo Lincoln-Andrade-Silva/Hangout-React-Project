@@ -1,6 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import service from "../../api/service";
-import { IProfile, IUserPost } from "../../models/IProfile";
+import { IPhoto, IProfile, IUserPost } from "../../models/IProfile";
 import { store } from "../store";
 
 export default class ProfileStore {
@@ -13,6 +13,7 @@ export default class ProfileStore {
     activeTab = 0;
     userPosts: IUserPost[] = [];
     loadingPosts = false;
+    addPhotoMode = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -27,6 +28,66 @@ export default class ProfileStore {
                 }
             }
         )
+    }
+
+    setMainPhoto = async (photo: IPhoto) => {
+        this.loading = true;
+        try {
+            await service.profiles.setMainPhoto(photo.id);
+            store.userStore.setImage(photo.url);
+            runInAction(() => {
+                if (this.profile && this.profile.photos) {
+                    this.profile.photos.find(p => p.isMain)!.isMain = false;
+                    this.profile.photos.find(p => p.id === photo.id)!.isMain = true;
+                    this.profile.image = photo.url;
+                    this.loading = false;
+                }
+            })
+        } catch (error) {
+            runInAction(() => this.loading = false)
+            console.log(error)
+        }
+    }
+
+    deletePhoto = async (photo: IPhoto) => {
+        this.loading = true;
+        try {
+            await service.profiles.deletePhoto(photo.id)
+            runInAction(() => {
+                if (this.profile) {
+                    this.profile.photos = this.profile.photos?.filter(p => p.id !== photo.id);
+                    this.loading = false;
+                }
+            })
+        } catch (error) {
+            runInAction(() => this.loading = false)
+            console.log(error);
+        }
+    }
+
+    updloadPhoto = async (file: Blob) => {
+        this.uploading = true;
+        try {
+            const response = await service.profiles.uploadPhoto(file);
+            const photo = response.data;
+            runInAction(() => {
+                if (this.profile) {
+                    this.profile.photos?.push(photo);
+                    if (photo.isMain && store.userStore.user) {
+                        store.userStore.setImage(photo.url);
+                        this.profile.image = photo.url
+                    }
+                }
+                this.uploading = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.uploading = false);
+        }
+    }
+
+    setAddPhotoMode = (value: boolean) => {
+        this.addPhotoMode = value;
     }
 
     setActiveTab = (activeTab: any) => {

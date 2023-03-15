@@ -16,3 +16,5 @@ Web application developed in react using .Net 7.0, React 18 (with Typescript) an
 - Yup
 - React Datepicker
 - Date FNS
+- React Cropper
+- React Dropzone

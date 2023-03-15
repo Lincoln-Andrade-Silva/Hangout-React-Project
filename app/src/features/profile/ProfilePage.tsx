@@ -1,4 +1,3 @@
-import { profile } from "console";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -24,7 +23,7 @@ export default observer(function ProfilePage() {
 
     return (
         <Grid>
-            <Grid.Column width={14} style={{margin:'auto'}}>
+            <Grid.Column width={14} style={{ margin: 'auto' }}>
                 {profile &&
                     <>
                         <ProfileHeader profile={profile} />

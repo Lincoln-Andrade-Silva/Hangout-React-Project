@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IPaginatedResult } from '../models/IPaginationModels';
 import { IPost, PostFormValues } from '../models/IPost';
-import { IProfile, IUserPost } from '../models/IProfile';
+import { IPhoto, IProfile, IUserPost } from '../models/IProfile';
 import { IUser, IUserFormValues } from '../models/IUser';
 import { router } from '../router/Route';
 import { store } from '../stores/store';
@@ -36,7 +36,7 @@ axios.interceptors.response.use(async response => {
     switch (status) {
         case 400:
             if (data.errors) {
-                const modalStateErrors = [];
+                const modalStateErrors: any = [];
                 for (const key in data.errors) {
                     if (data.errors[key]) modalStateErrors.push(data.errors[key])
                 }
@@ -77,8 +77,8 @@ const post = {
     list: () => requests.get(postModule),
     listWithFilter: (params: URLSearchParams) => axios.get<IPaginatedResult<IPost[]>>(postModule, { params }).then(response),
     details: (id: string) => requests.get<IPost>(`${postModule}/${id}`),
-    create: (post: PostFormValues) => requests.post<IPost>(postModule, post).then(() => { toast.success('Sucess') }),
-    edit: (post: PostFormValues) => requests.put<IPost>(`${postModule}/${post.id}`, post).then(() => { toast.success('Sucess') }),
+    create: (post: PostFormValues) => requests.post<IPost>(postModule, post).then(() => { toast.success('Success') }),
+    edit: (post: PostFormValues) => requests.put<IPost>(`${postModule}/${post.id}`, post).then(() => { toast.success('Success') }),
     delete: (id: string) => requests.delete<void>(`${postModule}/${id}`),
     attend: (id: string) => requests.post<void>(`${postModule}/${id}/attend`, {})
 }
@@ -95,7 +95,16 @@ const profiles = {
     listFollowing: (username: string, predicate: string) =>
         requests.get<IProfile[]>(`/follow/${username}?predicate=${predicate}`),
     listPosts: (username: string, predicate: string) =>
-        requests.get<IUserPost[]>(`/profile/${username}/posts?predicate=${predicate}`)
+        requests.get<IUserPost[]>(`/profile/${username}/posts?predicate=${predicate}`),
+    setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}).then().then(() => { toast.success('Success') }),
+    deletePhoto: (id: string) => requests.delete(`/photos/${id}`).then(() => { toast.success('Success') }),
+    uploadPhoto: (file: Blob) => {
+        let formData = new FormData();
+        formData.append('File', file);
+        return axios.post<IPhoto>('photos', formData, {
+            headers: { 'Content-type': 'multipart/form-data' }
+        }).then((response) => { toast.success('Success'); return response })
+    },
 }
 
 const service = {

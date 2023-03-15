@@ -24,7 +24,8 @@ export default observer(function PostListAttendee({ post }: Props) {
         <List horizontal>
             {post.attendees.map(attendee => (
                 <Popup
-                    
+                    basic
+                    hoverable
                     key={attendee.username}
                     position="top right"
                     positionFixed
