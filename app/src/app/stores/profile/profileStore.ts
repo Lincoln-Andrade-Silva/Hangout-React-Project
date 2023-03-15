@@ -30,6 +30,28 @@ export default class ProfileStore {
         )
     }
 
+    setDisplayName = (name: string) => {
+        if (store.userStore.user) store.userStore.user.displayName = name;
+    }
+
+    updateProfile = async (profile: Partial<IProfile>) => {
+        this.loading = true;
+        try {
+            await service.profiles.updateProfile(profile).then();
+            runInAction(() => {
+                if (profile.displayName && profile.displayName !==
+                    store.userStore.user?.displayName) {
+                    store.userStore.setDisplayName(profile.displayName);
+                }
+                this.profile = { ...this.profile, ...profile as IProfile };
+                this.loading = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.loading = false);
+        }
+    }
+
     setMainPhoto = async (photo: IPhoto) => {
         this.loading = true;
         try {

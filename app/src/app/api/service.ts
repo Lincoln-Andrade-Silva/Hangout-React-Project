@@ -92,10 +92,8 @@ const account = {
 const profiles = {
     get: (username: string) => requests.get<IProfile>(`/profile/${username}`),
     updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
-    listFollowing: (username: string, predicate: string) =>
-        requests.get<IProfile[]>(`/follow/${username}?predicate=${predicate}`),
-    listPosts: (username: string, predicate: string) =>
-        requests.get<IUserPost[]>(`/profile/${username}/posts?predicate=${predicate}`),
+    listFollowing: (username: string, predicate: string) => requests.get<IProfile[]>(`/follow/${username}?predicate=${predicate}`),
+    listPosts: (username: string, predicate: string) => requests.get<IUserPost[]>(`/profile/${username}/posts?predicate=${predicate}`),
     setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}).then().then(() => { toast.success('Success') }),
     deletePhoto: (id: string) => requests.delete(`/photos/${id}`).then(() => { toast.success('Success') }),
     uploadPhoto: (file: Blob) => {
@@ -105,6 +103,9 @@ const profiles = {
             headers: { 'Content-type': 'multipart/form-data' }
         }).then((response) => { toast.success('Success'); return response })
     },
+    updateProfile: (profile: Partial<IProfile>) => requests.put(`/profile`, profile).finally(() => {
+        toast.success('Success'); 
+    })
 }
 
 const service = {
